@@ -10,7 +10,7 @@
 <meta property="og:type" content="restaurant">
 <meta property="og:title" content="Asador Motabarri · Caserío del XIX en Erandio">
 <meta property="og:description" content="Brasa, txuletón y alubias con sacramentos. Caserío rehabilitado en 1992, en pleno barrio de Mota de Goiherri.">
-<meta property="og:url" content="https://ggeelcano.github.io/demos/motabarri-erandio/">
+<meta property="og:url" content="https://asadormotabarri.com/">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='28' fill='%232A1F18'/%3E%3Ctext x='90' y='118' font-family='Georgia,serif' font-style='italic' font-size='100' font-weight='700' fill='%23C8632A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
@@ -190,6 +190,51 @@ section{padding:130px 28px;position:relative}
 .espacios-list-item:last-child{border-bottom:1px solid var(--linea)}
 .espacios-list-item b{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:20px;color:var(--tierra)}
 .espacios-list-item span{font-size:13px;color:var(--gris);text-align:right;font-weight:500;letter-spacing:.04em}
+
+/* Galeria */
+.galeria{background:var(--hueso);padding:100px 28px 110px}
+.galeria-head{text-align:center;max-width:760px;margin:0 auto 60px}
+.galeria-head .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--brasa-2);display:block;margin-bottom:8px;font-weight:500;letter-spacing:.04em}
+.galeria-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--tierra);line-height:1.05;letter-spacing:-.015em}
+.galeria-head h3 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.galeria-head p{font-size:16px;color:var(--gris);margin-top:14px;line-height:1.65}
+.galeria-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:14px}
+.galeria-item{position:relative;overflow:hidden;cursor:pointer;background:var(--linea)}
+.galeria-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.galeria-item:hover img{transform:scale(1.06)}
+.galeria-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,20,15,.78) 100%);pointer-events:none;opacity:0;transition:opacity .3s}
+.galeria-item:hover::after{opacity:1}
+.galeria-tag{position:absolute;bottom:18px;left:20px;right:20px;color:var(--crema);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;font-weight:600;line-height:1.2;z-index:2;text-shadow:0 2px 8px rgba(0,0,0,.5);opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+.galeria-item:hover .galeria-tag{opacity:1;transform:translateY(0)}
+.galeria-item.big{grid-column:span 2;grid-row:span 2}
+.galeria-item.wide{grid-column:span 2;grid-row:span 1}
+.galeria-item.tall{grid-column:span 1;grid-row:span 1}
+.galeria-item.small{grid-column:span 1;grid-row:span 1}
+
+@media(max-width:1024px){
+  .galeria{padding:70px 22px 80px}
+  .galeria-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .galeria-item.big{grid-column:span 2;grid-row:span 2}
+  .galeria-item.wide{grid-column:span 2;grid-row:span 1}
+  .galeria-item.tall,.galeria-item.small{grid-column:span 1;grid-row:span 1}
+}
+@media(max-width:560px){
+  .galeria{padding:55px 18px 65px}
+  .galeria-grid{grid-template-columns:1fr;grid-auto-rows:260px;gap:10px}
+  .galeria-item.big,.galeria-item.wide,.galeria-item.tall,.galeria-item.small{grid-column:span 1;grid-row:span 1}
+  .galeria-tag{opacity:1;transform:none}
+  .galeria-item::after{opacity:1}
+}
+
+/* Lightbox */
+.gx-back{position:fixed;inset:0;background:rgba(15,10,7,.94);z-index:300;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.gx-back.open{display:flex}
+.gx-img{max-width:96vw;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.gx-close{position:absolute;top:22px;right:28px;background:transparent;border:none;color:var(--crema);font-size:36px;cursor:pointer;line-height:1;padding:6px}
+.gx-prev,.gx-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(244,237,224,.08);border:1px solid rgba(244,237,224,.25);color:var(--crema);width:54px;height:54px;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;cursor:pointer;transition:.25s}
+.gx-prev{left:24px}.gx-next{right:24px}
+.gx-prev:hover,.gx-next:hover{background:var(--brasa);border-color:var(--brasa);color:var(--tierra-2)}
+@media(max-width:560px){.gx-prev,.gx-next{width:44px;height:44px;font-size:24px}.gx-prev{left:10px}.gx-next{right:10px}}
 
 .menus{background:var(--tierra);color:var(--crema);padding:90px 28px;position:relative;overflow:hidden}
 .menus::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(200,99,42,.16) 0%,transparent 60%)}
@@ -397,6 +442,78 @@ footer{background:#15100C;color:var(--crema);padding:70px 28px 30px}
   .booking-form-head{flex-direction:column;gap:8px}
   .dish-card h3{font-size:26px}
 }
+
+/* Carta integrada */
+.carta-home{background:var(--hueso);padding:100px 0 0}
+.carta-home-head{text-align:center;max-width:760px;margin:0 auto 50px;padding:0 28px}
+.carta-home-head .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--brasa-2);display:block;margin-bottom:8px;font-weight:500;letter-spacing:.04em}
+.carta-home-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--tierra);line-height:1.05;letter-spacing:-.015em}
+.carta-home-head h3 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.carta-home-head p{font-size:16px;color:var(--gris);margin-top:14px;line-height:1.65}
+.carta-tabs{display:flex;justify-content:center;gap:0;margin:0 auto;border-bottom:1px solid var(--linea);overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--hueso);position:sticky;top:84px;z-index:50;padding:0 20px}
+.carta-tab{padding:18px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;font-weight:500;color:var(--gris);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:.2s;white-space:nowrap;letter-spacing:.02em}
+.carta-tab.active{color:var(--tierra);border-bottom-color:var(--brasa);font-weight:600}
+.carta-tab:hover{color:var(--tierra)}
+.carta-main{padding:60px 28px 100px;background:var(--hueso)}
+.carta-wrap{max-width:1280px;margin:0 auto}
+.carta-panel{display:none;animation:cartaFade .35s}
+.carta-panel.active{display:block}
+@keyframes cartaFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.carta-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 80px;max-width:1100px;margin:0 auto}
+.carta-section{margin-bottom:60px}
+.carta-section:last-child{margin-bottom:0}
+.carta-section h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--brasa-2);font-size:32px;margin-bottom:30px;padding-bottom:14px;border-bottom:1px solid var(--linea);max-width:1100px;margin-left:auto;margin-right:auto;text-align:center;letter-spacing:-.005em}
+.dish{padding-bottom:20px;border-bottom:1px dashed var(--linea)}
+.dish-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-bottom:6px}
+.dish-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:var(--tierra);letter-spacing:.005em;line-height:1.25}
+.dish-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--brasa-2);font-size:19px;white-space:nowrap;flex-shrink:0}
+.dish-desc{font-size:13.5px;color:var(--gris);font-weight:400;line-height:1.55}
+.noche-banner{background:var(--brasa);color:var(--tierra-2);padding:28px;text-align:center;max-width:680px;margin:0 auto 50px;border:1.5px solid var(--brasa-2)}
+.noche-banner b{font-family:'Inter',sans-serif;font-style:normal;letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;display:block;margin-bottom:8px;font-weight:700}
+.noche-banner span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.4;font-weight:500;color:var(--tierra-2)}
+.carta-note{text-align:center;max-width:680px;margin:60px auto 0;font-size:13.5px;color:var(--gris);font-style:italic;line-height:1.6}
+.carta-note a{color:var(--brasa-2);font-weight:600}
+
+/* Menus integrados */
+.menus-home{background:var(--tierra);color:var(--crema);padding:100px 28px 110px;position:relative}
+.menus-home-head{text-align:center;max-width:760px;margin:0 auto 60px}
+.menus-home-head .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--brasa);display:block;margin-bottom:8px;font-weight:500;letter-spacing:.04em}
+.menus-home-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--crema);line-height:1.05;letter-spacing:-.015em}
+.menus-home-head h3 em{font-style:italic;font-weight:600;color:var(--brasa)}
+.menus-home-head p{font-size:16px;color:rgba(244,237,224,.75);margin-top:14px;line-height:1.65}
+.menus-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:30px;max-width:1100px;margin:0 auto}
+.menu-fixed{background:var(--crema);color:var(--tinta);padding:42px 44px;border:1px solid var(--linea);border-top:3px solid var(--brasa);box-shadow:0 18px 50px rgba(0,0,0,.25);display:flex;flex-direction:column}
+.menu-fixed.featured{border-top-width:4px;background:linear-gradient(180deg,#fff 0%,#fdf8ef 100%)}
+.menu-fixed-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;padding-bottom:18px;border-bottom:1px dashed var(--linea);flex-wrap:wrap;gap:12px}
+.menu-fixed-head h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--tierra);font-size:30px;line-height:1.05}
+.menu-fixed-head h4 em{font-style:italic;font-weight:600;color:var(--brasa-2);display:block;font-size:15px;letter-spacing:.04em;margin-top:4px}
+.menu-fixed-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:42px;color:var(--brasa);line-height:1;white-space:nowrap}
+.menu-fixed h5{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brasa-2);margin:18px 0 10px}
+.menu-fixed h5:first-of-type{margin-top:0}
+.menu-fixed ul{list-style:none;margin-bottom:6px}
+.menu-fixed li{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--tierra);font-weight:500;padding:5px 0;line-height:1.4}
+.menu-fixed li small{display:block;font-size:11px;color:var(--gris);font-style:italic;letter-spacing:.04em;font-family:'Inter',sans-serif;font-weight:400;margin-top:1px}
+.menu-fixed-footer{margin-top:auto;padding-top:14px;border-top:1px dashed var(--linea);font-size:13px;color:var(--gris);line-height:1.6;font-style:italic;font-family:'Cormorant Garamond',serif}
+.menu-fixed-footer b{color:var(--tierra);font-weight:600;font-style:normal;font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.04em}
+.menu-fixed-footer a{color:var(--brasa-2);font-weight:600}
+
+@media(max-width:1024px){
+  .carta-home{padding:70px 0 0}
+  .carta-grid{grid-template-columns:1fr;gap:24px}
+  .carta-tabs{top:78px}
+  .carta-section h2{font-size:26px}
+  .menus-home{padding:70px 22px 80px}
+  .menus-grid{grid-template-columns:1fr;gap:24px;grid-auto-rows:auto}
+  .menu-fixed{padding:32px 26px;min-height:520px}
+  .menu-fixed-head h4{font-size:24px}
+  .menu-fixed-price{font-size:36px}
+}
+@media(max-width:560px){
+  .carta-tab{padding:14px 14px;font-size:15px}
+  .carta-main{padding:40px 18px 70px}
+  .menus-home{padding:55px 18px 65px}
+  .menu-fixed{min-height:560px}
+}
 </style>
 </head>
 <body>
@@ -431,10 +548,10 @@ setTimeout(hideLoader,4000);
     </a>
     <div class="nav-links">
       <a href="#cocina">La cocina</a>
-      <a href="#espacios">Los espacios</a>
+      <a href="#espacios">Espacios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#carta">Carta</a>
       <a href="#menus">Menús</a>
-      <a href="carta/">Carta</a>
-      <a href="#reservar">Reservar</a>
       <a href="#mapa">Cómo llegar</a>
     </div>
     <button type="button" class="nav-cta" data-open-booking>Reservar</button>
@@ -447,9 +564,10 @@ setTimeout(hideLoader,4000);
 <!-- Menú móvil -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#cocina" data-mm-close>La cocina</a>
-  <a href="#espacios" data-mm-close>Los espacios</a>
+  <a href="#espacios" data-mm-close>Espacios</a>
+  <a href="#galeria" data-mm-close>Galería</a>
+  <a href="#carta" data-mm-close>Carta</a>
   <a href="#menus" data-mm-close>Menús</a>
-  <a href="carta/" data-mm-close>Carta</a>
   <a href="#mapa" data-mm-close>Cómo llegar</a>
   <a href="#reservar" class="mm-cta" data-mm-close>Reservar mesa</a>
   <div class="mm-foot">Asador Motabarri · Erandio</div>
@@ -485,7 +603,7 @@ setTimeout(hideLoader,4000);
     <div class="stat"><b>1992</b><span>caserío rehabilitado</span></div>
     <div class="stat"><b>16K+</b><span>reseñas</span></div>
     <div class="stat"><b>200</b><span>comensales</span></div>
-    <div class="stat"><b>15€</b><span>menú diario</span></div>
+    <div class="stat"><b>20€</b><span>menú del día</span></div>
   </div>
 </div>
 
@@ -493,7 +611,7 @@ setTimeout(hideLoader,4000);
   <div class="pull-inner">
     <div class="pull-mark">"</div>
     <blockquote>Más de tres décadas haciendo lo mismo: <b>brasa de carbón, producto de aquí y mesa para sentarse a gusto</b>. Sin pretensiones, sin postureo, sin prisa.</blockquote>
-    <div class="pull-author">Familia Landa Etxebarria · Motabarri</div>
+    <div class="pull-author">Familia Landa Uriguen · Motabarri</div>
   </div>
 </div>
 
@@ -512,22 +630,22 @@ setTimeout(hideLoader,4000);
       <div class="dish-card">
         <span class="dish-num">— 01</span>
         <h3>Txuletón <em>a la brasa</em></h3>
-        <p>Vacuno mayor madurado mínimo 30 días. Brasa de encina y carbón vegetal. Sal gorda, vuelta y vuelta, reposo. Pimientos asados y patata vieja al rescoldo.</p>
+        <p>Vacuno mayor madurado mínimo 30 días. Brasa de encina y carbón vegetal. Sal gorda, vuelta y vuelta, reposo. Pimientos asados y patata vieja.</p>
       </div>
       <div class="dish-card">
         <span class="dish-num">— 02</span>
-        <h3>Alubias <em>con sacramentos</em></h3>
-        <p>Alubia roja con morcilla, chorizo, costilla y berza. La otra especialidad de la casa. La que pides en otoño y aún en abril cuando hace frío.</p>
+        <h3>Alubia roja <em>con sus sacramentos y berza</em></h3>
+        <p>La otra especialidad de la casa. Morcilla, chorizo, costilla y berza. Todo el año en carta — excepto julio y agosto, que es por encargo.</p>
       </div>
       <div class="dish-card">
         <span class="dish-num">— 03</span>
-        <h3>Bacalao <em>al pil-pil</em></h3>
-        <p>Lomo de bacalao, ajo, guindilla. Salsa montada al ritmo del cazuelo, con su pan al lado para mojar bien.</p>
+        <h3>Tartas <em>de queso al horno</em></h3>
+        <p>Pistacho, lotus y tradicional. Cremosas por dentro, ligeramente quemadas por arriba. Recetas de la casa. El cierre que casi nadie se salta.</p>
       </div>
       <div class="dish-card">
         <span class="dish-num">— 04</span>
-        <h3>Tarta <em>de queso al horno</em></h3>
-        <p>Cremosa por dentro, ligeramente quemada por arriba. Receta tradicional de la casa. El cierre que casi nadie se salta.</p>
+        <h3>Postres <em>caseros</em></h3>
+        <p>Cuajada, goxua, flan de huevo, crema catalana, torrija… y otras tartas (oreo, lotus, carrot cake, San Marcos). Todo hecho en casa.</p>
       </div>
     </div>
   </div>
@@ -557,26 +675,434 @@ setTimeout(hideLoader,4000);
   </div>
 </section>
 
-<section id="menus" class="menus">
-  <div class="mq-inner">
-    <div class="mq-card">
-      <span>menú diario</span>
-      <h4>Lunes a viernes</h4>
-      <b>15 €</b>
-      <p>Comida casera de mediodía. Primer plato, segundo, postre, pan y bebida. Cada día algo distinto.</p>
+<!-- GALERIA -->
+<section id="galeria" class="galeria">
+  <div class="galeria-head">
+    <span class="eyebrow">— la casa por dentro —</span>
+    <h3>El <em>Motabarri</em> en imágenes.</h3>
+    <p>Comedores con vigas y pared de piedra, carpas climatizadas para celebraciones, parrilla de carbón con txuletón sobre brasa de encina y vistas a Bilbao desde el alto de Unbe.</p>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item big" data-gx="img/galeria/carpa-vistas.jpg">
+      <img src="img/galeria/carpa-vistas.jpg" alt="Carpa con vistas panorámicas a Bilbao desde el Motabarri" loading="lazy" decoding="async">
+      <div class="galeria-tag">Carpa con vistas a Bilbao</div>
     </div>
-    <div class="mq-card feat">
-      <span>menú fin de semana</span>
-      <h4>Sábado, domingo y festivos</h4>
-      <b>18 €</b>
-      <p>Más completo, con más variedad y producto de mercado. Para que la comida del finde no se acabe nunca.</p>
+    <div class="galeria-item wide" data-gx="img/galeria/carpa-jardin.jpg">
+      <img src="img/galeria/carpa-jardin.jpg" alt="Carpa climatizada con vistas al jardín" loading="lazy" decoding="async">
+      <div class="galeria-tag">Carpa al jardín</div>
     </div>
-    <div class="mq-card">
-      <span>carta &amp; eventos</span>
-      <h4>A la carta</h4>
-      <b>30–40 €</b>
-      <p>Txuletón a la brasa, bacalaos, pescados de lonja y postres caseros. Menús a medida para grupos y celebraciones.</p>
+    <div class="galeria-item tall" data-gx="img/galeria/carpa-chimenea.jpg">
+      <img src="img/galeria/carpa-chimenea.jpg" alt="Carpa con chimenea encendida y mesas vestidas para celebraciones" loading="lazy" decoding="async">
+      <div class="galeria-tag">Chimenea para celebraciones</div>
     </div>
+    <div class="galeria-item small" data-gx="img/galeria/comedor-tropical.jpg">
+      <img src="img/galeria/comedor-tropical.jpg" alt="Comedor interior elegante con mesas vestidas y copas de vino" loading="lazy" decoding="async">
+      <div class="galeria-tag">Comedor interior</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="gx-back" id="gx-back" role="dialog" aria-modal="true" aria-label="Galería ampliada">
+  <button type="button" class="gx-close" id="gx-close" aria-label="Cerrar">&times;</button>
+  <button type="button" class="gx-prev" id="gx-prev" aria-label="Anterior">‹</button>
+  <img src="" alt="" class="gx-img" id="gx-img">
+  <button type="button" class="gx-next" id="gx-next" aria-label="Siguiente">›</button>
+</div>
+
+<!-- CARTA EN HOME -->
+<section id="carta" class="carta-home">
+  <div class="carta-home-head">
+    <span class="eyebrow">— la carta —</span>
+    <h3>Carta del <em>Motabarri</em>.</h3>
+    <p>Entrantes, pescados de lonja, carnes a la brasa de carbón, postres caseros y bodega completa. La carta especial de viernes y sábado noche con hamburguesas y bocadillos.</p>
+  </div>
+
+  <div class="carta-tabs">
+    <button class="carta-tab active" data-carta="general">A la carta</button>
+    <button class="carta-tab" data-carta="noche">Viernes &amp; sábado noche</button>
+    <button class="carta-tab" data-carta="postres">Postres</button>
+    <button class="carta-tab" data-carta="bodega">Bodega</button>
+  </div>
+
+  <div class="carta-main">
+    <div class="carta-wrap">
+
+      <!-- A LA CARTA -->
+      <div class="carta-panel active" data-carta-panel="general">
+        <div class="carta-section">
+          <h2>Entrantes calientes</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Zamburiñas</span><span class="dish-price">2,50 €/ud</span></div><p class="dish-desc">Mínimo 4 unidades.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Almejas</span><span class="dish-price">20,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Gambas</span><span class="dish-price">18,00 €/docena</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Langostinos</span><span class="dish-price">18,00 €/docena</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Croquetas de jamón</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">8 unidades.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Hongos salteados</span><span class="dish-price">15,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Hongos con gorringo</span><span class="dish-price">18,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Hongos con foie</span><span class="dish-price">20,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de hongos</span><span class="dish-price">17,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pimientos rellenos de txangurro</span><span class="dish-price">14,00 €</span></div><p class="dish-desc">4 unidades.</p></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Entrantes fríos</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Jamón ibérico con tostas y tumaca</span><span class="dish-price">18,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">16,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Espárragos dos salsas</span><span class="dish-price">14,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Anchoas de Santoña</span><span class="dish-price">16,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Pescados</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Merluza a la plancha</span><span class="dish-price">25,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Rodaballo</span><span class="dish-price">20,00 €/ración</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Lubina</span><span class="dish-price">18,00 €/ración</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pescados salvajes</span><span class="dish-price">Consultar</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Carnes a la brasa</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Chuletón</span><span class="dish-price">38,00 €/kg</span></div><p class="dish-desc">Vacuno mayor a la brasa de encina.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Solomillo</span><span class="dish-price">24,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot</span><span class="dish-price">18,00 €</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIERNES Y SÁBADO NOCHE -->
+      <div class="carta-panel" data-carta-panel="noche">
+        <div class="noche-banner">
+          <b>Solo viernes y sábado noche</b>
+          <span>Carta especial: hamburguesas, platos combinados, raciones y bocadillos. Para venir de cuadrilla, después del trabajo o a cenar rápido.</span>
+        </div>
+
+        <div class="carta-section">
+          <h2>Ensaladas</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">16,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada mixta</span><span class="dish-price">12,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ibéricos</span><span class="dish-price">16,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensaladilla Motabarri</span><span class="dish-price">12,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Espárragos dos salsas</span><span class="dish-price">14,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Hamburguesas <small style="font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">(con patatas)</small></h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Alemana</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Lechuga, tomate y carne.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Holandesa</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, queso y carne.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Berlinesa</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, pepinillo y carne.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Con huevo</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, huevo y carne.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Con pimientos rojos</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, pimientos y carne.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ibérica</span><span class="dish-price">8,50 €</span></div><p class="dish-desc">Lechuga, tomate, jamón ibérico y carne.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Doble</span><span class="dish-price">8,00 €</span></div><p class="dish-desc">Lechuga, tomate y doble carne.</p></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Bocadillos <small style="font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">(con patatas)</small></h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Lomo</span><span class="dish-price">5,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Lomo con queso</span><span class="dish-price">6,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Lomo con pimientos</span><span class="dish-price">6,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Bacon con queso</span><span class="dish-price">5,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Vegetal</span><span class="dish-price">5,50 €</span></div><p class="dish-desc">Lechuga, tomate, cebolla y espárrago.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga</span><span class="dish-price">6,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga con queso</span><span class="dish-price">6,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Tortillas variadas</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Jamón, chorizo, queso, bonito…</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Patatas fritas</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Queso con nueces</span><span class="dish-price">6,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Platos combinados</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Lomo · combinado</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">Lomo, 2 huevos, lechuga, tomate, croquetas y patatas.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga · combinado</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">Pechuga, 2 huevos, lechuga, tomate, croquetas y patatas.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con patatas</span><span class="dish-price">6,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con patatas y chorizo</span><span class="dish-price">9,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con morcilla y patatas</span><span class="dish-price">9,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con pimientos rojos y patatas</span><span class="dish-price">9,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot</span><span class="dish-price">18,00 €</span></div><p class="dish-desc">Con pimientos, ensalada y patatas.</p></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Para picar</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Anchoas de Santoña</span><span class="dish-price">16,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Jamón ibérico con tumaca</span><span class="dish-price">18,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Foie con mermelada</span><span class="dish-price">14,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pulpo con alioli y vinagreta picante</span><span class="dish-price">22,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Chipirones del Cantábrico</span><span class="dish-price">14,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Zamburiñas</span><span class="dish-price">2,50 €/ud</span></div><p class="dish-desc">Mínimo 4 unidades.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Croquetas de jamón</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">8 unidades.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Gambas</span><span class="dish-price">18,00 €/docena</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de setas y gambas</span><span class="dish-price">12,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de hongos</span><span class="dish-price">14,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Chorizo frito</span><span class="dish-price">6,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Morcilla con pimientos rojos</span><span class="dish-price">8,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Alitas de pollo</span><span class="dish-price">5,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Fingers</span><span class="dish-price">6,00 €</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POSTRES -->
+      <div class="carta-panel" data-carta-panel="postres">
+        <div class="noche-banner" style="background:var(--hueso);border:1px solid var(--linea);color:var(--tierra)">
+          <b style="color:var(--brasa-2)">Todos caseros</b>
+          <span style="color:var(--tierra)">Hechos a diario en el obrador, con receta de siempre. El cierre que casi nadie se salta.</span>
+        </div>
+
+        <div class="carta-section">
+          <h2>Postres tradicionales</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Cuajada</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Flan de huevo</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Flan de coco</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Crema catalana</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Natillas</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Goxua</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Torrija</span><span class="dish-price">5,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Tartas caseras <small style="font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">(todas 5,00 €)</small></h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Queso al horno</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Queso con lotus</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Queso con pistacho</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Oreo</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Tiramisú</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Mousse de chocolate</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Mousse de limón</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">San Marcos</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Carrot cake</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Manzana</span><span class="dish-price">5,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Especiales</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Escocés</span><span class="dish-price">7,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Valenciano</span><span class="dish-price">7,00 €</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BODEGA -->
+      <div class="carta-panel" data-carta-panel="bodega">
+        <div class="carta-section">
+          <h2>Txakoli</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Itsasmendi</span><span class="dish-price">19,00 €</span></div><p class="dish-desc">Bizkaiko Txakolina.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Itsasmendi 7</span><span class="dish-price">25,00 €</span></div><p class="dish-desc">Bizkaiko Txakolina.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Uriarte</span><span class="dish-price">15,00 €</span></div><p class="dish-desc">Bizkaiko Txakolina.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Agerre</span><span class="dish-price">17,00 €</span></div><p class="dish-desc">Getariako Txakolina.</p></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Vinos blancos</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Tierra</span><span class="dish-price">18,00 €</span></div><p class="dish-desc">Blanco de Rioja.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Terra Nova</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Verdejo.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Mar de Frades</span><span class="dish-price">25,00 €</span></div><p class="dish-desc">Albariño.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pazo Serantellos</span><span class="dish-price">19,00 €</span></div><p class="dish-desc">Albariño.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Viernes</span><span class="dish-price">17,00 €</span></div><p class="dish-desc">Godello.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Hacienda Casa del Valle</span><span class="dish-price">17,00 €</span></div><p class="dish-desc">Chardonnay.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Crestissimo</span><span class="dish-price">15,00 €</span></div><p class="dish-desc">Moscato.</p></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Vinos rosados</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Castillo de Olite</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Navarra.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ubide</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Rioja.</p></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Vinos tintos · Rioja crianza</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ramón Bilbao</span><span class="dish-price">22,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Sierra Cantabria</span><span class="dish-price">22,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Luis Cañas</span><span class="dish-price">22,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Piérola</span><span class="dish-price">24,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Campillo</span><span class="dish-price">24,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Alberdi</span><span class="dish-price">24,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Vinos tintos · Ribera del Duero</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Mauro</span><span class="dish-price">48,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Berceo</span><span class="dish-price">26,00 €</span></div></div>
+          </div>
+        </div>
+
+        <div class="carta-section">
+          <h2>Cavas y champagne</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Uma</span><span class="dish-price">20,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Juvé &amp; Camps</span><span class="dish-price">40,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Juvé &amp; Camps Rosado</span><span class="dish-price">45,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Didier Herbert</span><span class="dish-price">40,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Moët &amp; Chandon</span><span class="dish-price">45,00 €</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="carta-note">Precios con IVA incluido · Carta sujeta a disponibilidad de mercado · Para alérgenos consulta a tu camarero/a</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- MENÚS EN HOME -->
+<section id="menus" class="menus-home">
+  <div class="menus-home-head">
+    <span class="eyebrow">— menús cerrados —</span>
+    <h3>Menús del <em>Motabarri</em>.</h3>
+    <p>Menú del día, alubiada, menús de pescado o chuletón para la pareja y menús concertados para grupos. Para venir sin pensar mucho y comer bien.</p>
+  </div>
+
+  <div class="menus-grid">
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Menú niños<em>para los más peques</em></h4>
+        <span class="menu-fixed-price">15 €</span>
+      </div>
+      <h5>Incluye</h5>
+      <ul>
+        <li>Macarrones</li>
+        <li>Lomo o pechuga con patatas</li>
+        <li>Postre</li>
+        <li>Agua y pan</li>
+      </ul>
+      <div class="menu-fixed-footer"><b>Menú compartido:</b> incremento de 4 €. Cervezas y refrescos no incluidos. IVA incluido.</div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Menú del día<em>mediodía</em></h4>
+        <span class="menu-fixed-price">20 €</span>
+      </div>
+      <h5>Para compartir</h5>
+      <ul>
+        <li>Jamón, croquetas de jamón y rabas</li>
+      </ul>
+      <h5>Segundo</h5>
+      <ul>
+        <li>Pechuga con patatas</li>
+      </ul>
+      <h5>Postre</h5>
+      <ul><li>Postre casero</li></ul>
+      <div class="menu-fixed-footer">Agua y pan incluidos. Cervezas y refrescos no incluidos. IVA incluido.</div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Alubiada<em>de la casa</em></h4>
+        <span class="menu-fixed-price">22 €</span>
+      </div>
+      <h5>Incluye</h5>
+      <ul>
+        <li>Alubias rojas</li>
+        <li>Berza con refrito</li>
+        <li>Sacramentos: chorizo, tocino, costilla y morcilla</li>
+        <li>Postre</li>
+      </ul>
+      <div class="menu-fixed-footer"><b>Bebida:</b> agua, pan y vino crianza, verdejo, txakoli o cava. Cervezas y refrescos no incluidos. IVA incluido.</div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Menú pescado<em>la pareja</em></h4>
+        <span class="menu-fixed-price">52 €</span>
+      </div>
+      <h5>Entrante (a elegir)</h5>
+      <ul>
+        <li>Revuelto de setas y langostinos</li>
+        <li>Ensalada de ventresca</li>
+      </ul>
+      <h5>Segundo</h5>
+      <ul>
+        <li>Lubina a la espalda</li>
+      </ul>
+      <h5>Postre</h5>
+      <ul><li>Postre a elegir</li></ul>
+      <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza. Cervezas y refrescos no incluidos. IVA incluido. <b>Precio la pareja.</b></div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Menú especial<em>la pareja</em></h4>
+        <span class="menu-fixed-price">60 €</span>
+      </div>
+      <h5>Entrante (a elegir, para 2)</h5>
+      <ul>
+        <li>Anchoas en salazón con pimientos del piquillo</li>
+        <li>Foie con tostas y mermelada</li>
+        <li>Ensalada de tomate con ventresca y cebolleta</li>
+      </ul>
+      <h5>Segundo</h5>
+      <ul>
+        <li>Rodaballo con refrito para dos personas</li>
+      </ul>
+      <h5>Postre</h5>
+      <ul><li>Postre a elegir</li></ul>
+      <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza, cava o txakoli. Cervezas y refrescos no incluidos. IVA incluido. <b>Precio la pareja.</b></div>
+    </div>
+
+    <div class="menu-fixed featured">
+      <div class="menu-fixed-head">
+        <h4>Menú chuletón<em>la pareja</em></h4>
+        <span class="menu-fixed-price">64 €</span>
+      </div>
+      <h5>Entrante (a elegir)</h5>
+      <ul>
+        <li>Croquetas de jamón</li>
+        <li>Ensalada templada de ibéricos</li>
+      </ul>
+      <h5>Segundo</h5>
+      <ul>
+        <li>Chuletón 1,200 kg con patatas y pimientos</li>
+      </ul>
+      <h5>Postre</h5>
+      <ul><li>Postre a elegir</li></ul>
+      <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza. Cervezas y refrescos no incluidos. IVA incluido. <b>Precio la pareja.</b></div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Eventos y grupos<em>menús concertados</em></h4>
+        <span class="menu-fixed-price">A medida</span>
+      </div>
+      <h5>Para grupos y celebraciones</h5>
+      <ul>
+        <li>Variedad de menús concertados</li>
+        <li>Bodas, comuniones, comidas de empresa</li>
+        <li>Hasta 65 comensales en carpa con chimenea</li>
+      </ul>
+      <div class="menu-fixed-footer">Cervezas y refrescos no incluidos. <b>Consultar disponibilidad:</b> <a href="tel:+34944670768">944 67 07 68</a> · WhatsApp <a href="https://wa.me/34619622974">619 622 974</a></div>
+    </div>
+
   </div>
 </section>
 
@@ -649,11 +1175,11 @@ setTimeout(hideLoader,4000);
         </div>
         <div class="contact-row">
           <div class="ico">☏</div>
-          <div><b>Teléfono</b><a href="tel:+34944670768">944 67 07 68</a></div>
+          <div><b>Teléfono y reservas</b><a href="tel:+34944670768">944 67 07 68</a><span>WhatsApp: <a href="https://wa.me/34619622974" target="_blank" rel="noopener">619 622 974</a></span></div>
         </div>
         <div class="contact-row">
           <div class="ico">⏱</div>
-          <div><b>Horario</b><span>Abierto todos los días · Recomendamos reservar</span></div>
+          <div><b>Horario de comidas</b><span>L–V · 13:00–16:00<br>Viernes noche · 20:00–23:00<br>Sábado · 13:30–15:45 y 20:00–23:00<br>Domingo · 13:30–15:45</span></div>
         </div>
         <div class="contact-row">
           <div class="ico">P</div>
@@ -680,8 +1206,8 @@ setTimeout(hideLoader,4000);
       <h5>El asador</h5>
       <ul>
         <li><a href="#cocina">La cocina</a></li>
-        <li><a href="#menus">Menús del día</a></li>
-        <li><a href="carta/">Carta completa</a></li>
+        <li><a href="#carta">Carta completa</a></li>
+        <li><a href="#menus">Menús cerrados</a></li>
         <li><a href="#reservar">Reservar online</a></li>
       </ul>
     </div>
@@ -699,13 +1225,14 @@ setTimeout(hideLoader,4000);
         <li><a href="privacidad/">Política de privacidad</a></li>
         <li><a href="cookies/">Política de cookies</a></li>
         <li><a href="tratamiento-datos/">Tratamiento de datos</a></li>
+        <li><a href="admin/">Acceso restaurante →</a></li>
         <li style="font-size:11px;opacity:.5;letter-spacing:.04em;margin-top:10px">Bengoetxebarri S.L.<br>CIF B67758219</li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
     <span>© 2026 Asador Motabarri · Caserío del XIX</span>
-    <span>Familia Landa Etxebarria</span>
+    <span>Familia Landa Uriguen</span>
   </div>
 </footer>
 
@@ -819,27 +1346,22 @@ document.querySelectorAll('input[type="date"]').forEach(i=>{
   i.value=tomorrow.toISOString().slice(0,10);
 });
 
-const ERP_ENDPOINT='https://gg-crm.ggelcano.workers.dev/api/reservas';
+const ERP_ENDPOINT='https://gg-reservas-erp.josugarciandia.workers.dev/api/reservas';
 const RESTAURANT_ID='motabarri-erandio';
 const CRM_KEY='gg_reservas';
 
-function saveToCRM(data){
+function saveLocal(data){
   try{
     const all=JSON.parse(localStorage.getItem(CRM_KEY)||'[]');
-    data.id='RES-'+Date.now()+'-'+Math.floor(Math.random()*1000);
-    data.estado='pendiente';
-    data.created_at=new Date().toISOString();
     all.unshift(data);
     localStorage.setItem(CRM_KEY,JSON.stringify(all));
-    return data.id;
-  }catch(e){return null}
+  }catch(e){}
 }
 
 async function submitBooking(form,statusEl,btn,closeAfter){
   const data=Object.fromEntries(new FormData(form).entries());
   data.restaurante=RESTAURANT_ID;
   data.restaurante_nombre='Asador Motabarri';
-  data.timestamp=new Date().toISOString();
   data.origen='web';
 
   if(!data.fecha||!data.hora||!data.nombre||!data.telefono||!data.email){
@@ -853,15 +1375,29 @@ async function submitBooking(form,statusEl,btn,closeAfter){
   btn.textContent='Enviando…';
   statusEl.classList.remove('show');
 
-  const id=saveToCRM({...data});
+  let id=null;
+  let saved=false;
   try{
-    await fetch(ERP_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,id}),mode:'cors'});
+    const r=await fetch(ERP_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),mode:'cors'});
+    if(r.ok){
+      const j=await r.json();
+      id=j.id||(j.reserva&&j.reserva.id);
+      saved=true;
+    }
   }catch(err){}
 
+  if(!saved){
+    const ymd=new Date().toISOString().slice(0,10).replace(/-/g,'');
+    const all=(()=>{try{return JSON.parse(localStorage.getItem(CRM_KEY)||'[]')}catch{return[]}})();
+    id='RES-'+ymd+'-'+String(all.length+1).padStart(3,'0');
+    saveLocal({...data,id,estado:'pendiente',created_at:new Date().toISOString(),_offline:true});
+  }
+
+  const fechaTxt=new Date(data.fecha+'T00:00:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
   statusEl.className='bf-status show success';
-  statusEl.innerHTML=`<b>¡Reserva recibida!</b> Confirmación nº <b>${id||'—'}</b> · Llegará a <b>${data.email}</b>. Mesa para ${data.comensales} el ${data.fecha} a las ${data.hora}.`;
+  statusEl.innerHTML=`<b>¡Reserva recibida!</b> Te llegará la confirmación a <b>${data.email}</b> en breve.<br><br>📌 Reserva <b>${id||'—'}</b> · Mesa para <b>${data.comensales}</b> el <b>${fechaTxt} a las ${data.hora}</b>.<br>Si necesitas cambiar algo, llámanos al <a href="tel:+34944670768" style="color:inherit;text-decoration:underline;font-weight:600">944 67 07 68</a>.`;
   form.reset();
-  if(closeAfter)setTimeout(closeModal,4000);
+  if(closeAfter)setTimeout(closeModal,5500);
   btn.disabled=false;
   btn.textContent=original;
 }
@@ -874,6 +1410,53 @@ document.getElementById('booking-form-modal').addEventListener('submit',e=>{
   e.preventDefault();
   submitBooking(e.target,document.getElementById('booking-status-modal'),e.target.querySelector('.bf-submit'),true);
 });
+
+/* Carta tabs */
+document.querySelectorAll('.carta-tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.carta-tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.carta-panel').forEach(function(x){x.classList.remove('active')});
+    t.classList.add('active');
+    var p=document.querySelector('.carta-panel[data-carta-panel="'+t.dataset.carta+'"]');
+    if(p)p.classList.add('active');
+    var top=document.getElementById('carta').offsetTop-80;
+    window.scrollTo({top:top,behavior:'smooth'});
+  });
+});
+
+/* Galeria + Lightbox */
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.galeria-item'));
+  var back=document.getElementById('gx-back');
+  var img=document.getElementById('gx-img');
+  var idx=0;
+  function open(i){idx=i;img.src=items[idx].dataset.gx;img.alt=items[idx].querySelector('img').alt;back.classList.add('open');document.body.style.overflow='hidden'}
+  function close(){back.classList.remove('open');document.body.style.overflow=''}
+  function prev(){idx=(idx-1+items.length)%items.length;img.src=items[idx].dataset.gx;img.alt=items[idx].querySelector('img').alt}
+  function next(){idx=(idx+1)%items.length;img.src=items[idx].dataset.gx;img.alt=items[idx].querySelector('img').alt}
+  items.forEach(function(el,i){el.addEventListener('click',function(){open(i)})});
+  document.getElementById('gx-close').addEventListener('click',close);
+  document.getElementById('gx-prev').addEventListener('click',function(e){e.stopPropagation();prev()});
+  document.getElementById('gx-next').addEventListener('click',function(e){e.stopPropagation();next()});
+  back.addEventListener('click',function(e){if(e.target===back||e.target===img)close()});
+  document.addEventListener('keydown',function(e){if(!back.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')prev();else if(e.key==='ArrowRight')next()});
+})();
+</script>
+
+<script>
+(function(){
+  function eq(){
+    var cards=document.querySelectorAll('#menus .menu-fixed');
+    if(!cards.length)return;
+    cards.forEach(function(c){c.style.minHeight=''});
+    var max=0;
+    cards.forEach(function(c){if(c.offsetHeight>max)max=c.offsetHeight});
+    cards.forEach(function(c){c.style.minHeight=max+'px'});
+  }
+  if(document.readyState!=='loading')eq();else document.addEventListener('DOMContentLoaded',eq);
+  window.addEventListener('load',eq);
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(eq,150)});
+})();
 </script>
 
 </body>

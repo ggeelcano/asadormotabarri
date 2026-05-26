@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Carta · Asador Motabarri · Erandio</title>
-<meta name="description" content="Carta completa del Asador Motabarri en Erandio. A la carta, menús cerrados (Chuletón 64€, Rodaballo 60€, Pescado 52€, Motabarri 38€, Alubiada 22€), menú infantil y carta especial de viernes y sábado noche.">
+<meta name="description" content="Carta completa del Asador Motabarri en Erandio. Entrantes, pescados, carnes a la brasa, postres caseros y bodega. Menú del día 20 €, alubiada 22 €, menú pescado 52 € y menú chuletón 64 € la pareja.">
 <meta name="theme-color" content="#2A1F18">
 
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='28' fill='%232A1F18'/%3E%3Ctext x='90' y='118' font-family='Georgia,serif' font-style='italic' font-size='100' font-weight='700' fill='%23C8632A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
@@ -134,14 +134,14 @@ footer a{color:var(--brasa);font-weight:500}
 <header class="head-page">
   <span class="eyebrow-h">— la carta —</span>
   <h1>Carta del <em>Motabarri</em>.</h1>
-  <p>Carta general, menús cerrados para grupos, menú infantil y la carta especial de viernes y sábado noche con hamburguesas, raciones y bocadillos.</p>
+  <p>Carta general, postres caseros, bodega completa y la carta especial de viernes y sábado noche con hamburguesas, raciones y bocadillos. ¿Buscas los <a href="../menus/" style="color:var(--brasa);text-decoration:underline">menús cerrados</a>?</p>
 </header>
 
 <div class="carta-tabs">
   <button class="carta-tab active" data-carta="general">A la carta</button>
-  <button class="carta-tab" data-carta="menus">Menús cerrados</button>
-  <button class="carta-tab" data-carta="ninos">Menú infantil</button>
   <button class="carta-tab" data-carta="noche">Viernes &amp; sábado noche</button>
+  <button class="carta-tab" data-carta="postres">Postres</button>
+  <button class="carta-tab" data-carta="bodega">Bodega</button>
 </div>
 
 <main>
@@ -150,181 +150,48 @@ footer a{color:var(--brasa);font-weight:500}
     <!-- A LA CARTA -->
     <div class="carta-panel active" data-carta-panel="general">
       <div class="carta-section">
-        <h2>Entrantes</h2>
+        <h2>Entrantes calientes</h2>
         <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Zamburiñas</span><span class="dish-price">2,50 €/u</span></div><p class="dish-desc">Mínimo 4 unidades.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Almejas</span><span class="dish-price">20 €</span></div><p class="dish-desc">A la plancha o en salsa verde (24 €).</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Gambas</span><span class="dish-price">18 €/docena</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Langostinos a la plancha</span><span class="dish-price">18 €/docena</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Jamón ibérico con tostas y tumaca</span><span class="dish-price">20 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Anchoas del Cantábrico</span><span class="dish-price">14 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Foie con mermelada y frutos rojos</span><span class="dish-price">14 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Pulpo a la brasa con alioli</span><span class="dish-price">22 €</span></div><p class="dish-desc">Y vinagreta picante.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Chipirones del Cantábrico con cebolla</span><span class="dish-price">14 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensaladilla Motabarri</span><span class="dish-price">10 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de tomate y ventresca</span><span class="dish-price">16 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">16 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada mixta</span><span class="dish-price">15 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Espárragos con mahonesa y vinagreta</span><span class="dish-price">14 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hongos salteados</span><span class="dish-price">15 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hongos salteados con foie</span><span class="dish-price">20 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hongos con gorringo</span><span class="dish-price">18 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de hongos</span><span class="dish-price">17 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Pimientos rellenos de changurro</span><span class="dish-price">14 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Zamburiñas</span><span class="dish-price">2,50 €/ud</span></div><p class="dish-desc">Mínimo 4 unidades.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Almejas</span><span class="dish-price">20,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Gambas</span><span class="dish-price">18,00 €/docena</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Langostinos</span><span class="dish-price">18,00 €/docena</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Croquetas de jamón</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">8 unidades.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Hongos salteados</span><span class="dish-price">15,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Hongos con gorringo</span><span class="dish-price">18,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Hongos con foie</span><span class="dish-price">20,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de hongos</span><span class="dish-price">17,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pimientos rellenos de txangurro</span><span class="dish-price">14,00 €</span></div><p class="dish-desc">4 unidades.</p></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Entrantes fríos</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Jamón ibérico con tostas y tumaca</span><span class="dish-price">18,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">16,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Espárragos dos salsas</span><span class="dish-price">14,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Anchoas de Santoña</span><span class="dish-price">16,00 €</span></div></div>
         </div>
       </div>
 
       <div class="carta-section">
         <h2>Pescados</h2>
         <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Merluza a la plancha</span><span class="dish-price">25 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Rodaballo (ración)</span><span class="dish-price">20 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Lubina (ración)</span><span class="dish-price">18 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Pescado del día</span><span class="dish-price">S/M</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Almejas a la plancha</span><span class="dish-price">20 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Almejas en salsa verde</span><span class="dish-price">24 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Merluza a la plancha</span><span class="dish-price">25,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Rodaballo</span><span class="dish-price">20,00 €/ración</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Lubina</span><span class="dish-price">18,00 €/ración</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pescados salvajes</span><span class="dish-price">Consultar</span></div></div>
         </div>
       </div>
 
       <div class="carta-section">
         <h2>Carnes a la brasa</h2>
         <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Chuletón</span><span class="dish-price">36 €/kg</span></div><p class="dish-desc">Vacuno mayor a la brasa de encina.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Solomillo</span><span class="dish-price">22 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot</span><span class="dish-price">18 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Chuletón</span><span class="dish-price">38,00 €/kg</span></div><p class="dish-desc">Vacuno mayor a la brasa de encina.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Solomillo</span><span class="dish-price">24,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot</span><span class="dish-price">18,00 €</span></div></div>
         </div>
-      </div>
-    </div>
-
-    <!-- MENÚS CERRADOS -->
-    <div class="carta-panel" data-carta-panel="menus">
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Menú Chuletón<em>para compartir</em></h4>
-          <span class="menu-fixed-price">64 €</span>
-        </div>
-        <h5>Primero (a elegir)</h5>
-        <ul>
-          <li>Croquetas de jamón caseras<small>contiene gluten · huevos · lácteos</small></li>
-          <li>Ensalada templada de ibéricos<small>contiene lácteos · sulfitos</small></li>
-        </ul>
-        <h5>Para compartir</h5>
-        <ul>
-          <li>Chuletón a la brasa de 1.200 kg<small>con patatas y pimientos · contiene gluten · lácteos · sulfitos</small></li>
-        </ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino (crianza, verdejo, txakoli o cava). Cervezas y refrescos no incluidos. IVA incluido.</div>
-      </div>
-
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Menú Rodaballo<em>para compartir</em></h4>
-          <span class="menu-fixed-price">60 €</span>
-        </div>
-        <h5>Primero (a elegir)</h5>
-        <ul>
-          <li>Anchoas en salazón con pimientos del piquillo<small>contiene crustáceos · pescado · moluscos</small></li>
-          <li>Foie con tostas y mermelada</li>
-          <li>Ensalada de tomate con ventresca y cebolleta<small>contiene pescado</small></li>
-        </ul>
-        <h5>Para compartir</h5>
-        <ul><li>Rodaballo con refrito<small>contiene pescado</small></li></ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza, txakoli, verdejo o cava. Cervezas y refrescos no incluidos.</div>
-      </div>
-
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Menú Pescado<em>para dos</em></h4>
-          <span class="menu-fixed-price">52 €</span>
-        </div>
-        <h5>Primero (a elegir)</h5>
-        <ul>
-          <li>Ensalada de ventresca<small>contiene pescado · sulfitos</small></li>
-          <li>Revuelto de setas y gambas<small>contiene crustáceos · huevos · pescado · moluscos</small></li>
-        </ul>
-        <h5>Segundo</h5>
-        <ul><li>Lubina a la espalda con patata panadera<small>contiene pescado · sulfitos</small></li></ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza, txakoli, verdejo o cava. Cervezas y refrescos no incluidos.</div>
-      </div>
-
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Menú Motabarri</h4>
-          <span class="menu-fixed-price">38 €</span>
-        </div>
-        <h5>Para compartir</h5>
-        <ul>
-          <li>Croquetas de jamón caseras<small>contiene gluten · huevos · lácteos</small></li>
-          <li>Revuelto de setas y gambas<small>contiene crustáceos · huevos · pescado · moluscos</small></li>
-          <li>Ensalada de ventresca<small>contiene pescado</small></li>
-        </ul>
-        <h5>Segundo (a elegir)</h5>
-        <ul>
-          <li>Entrecot con guarnición</li>
-          <li>Pimientos rellenos de changurro<small>contiene gluten · crustáceos · huevos · pescado · sulfitos · moluscos</small></li>
-          <li>Lubina con patata panadera<small>contiene pescado · sulfitos</small></li>
-        </ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza. Cervezas y refrescos no incluidos.</div>
-      </div>
-
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Alubiada</h4>
-          <span class="menu-fixed-price">22 €</span>
-        </div>
-        <h5>Plato único</h5>
-        <ul>
-          <li>Alubias rojas con sus sacramentos<small>chorizo, morcilla, tocino y costilla · contiene sulfitos</small></li>
-          <li>Berza</li>
-        </ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua, pan y vino crianza, verdejo o cava. Cervezas y refrescos no incluidos. <b>Envases para llevar +0,50 €.</b></div>
-      </div>
-    </div>
-
-    <!-- MENÚ INFANTIL -->
-    <div class="carta-panel" data-carta-panel="ninos">
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Menú niños<em>número uno</em></h4>
-          <span class="menu-fixed-price">15 €</span>
-        </div>
-        <h5>Primero</h5>
-        <ul><li>Macarrones con tomate<small>contiene gluten · huevos · lácteos · sulfitos</small></li></ul>
-        <h5>Segundo (a elegir)</h5>
-        <ul>
-          <li>Lomo con patatas<small>contiene gluten · huevos</small></li>
-          <li>Pechuga con patatas<small>contiene gluten · huevos</small></li>
-        </ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua y pan. Menú compartido <b>18 €</b>.</div>
-      </div>
-
-      <div class="menu-fixed">
-        <div class="menu-fixed-head">
-          <h4>Menú niños<em>número dos</em></h4>
-          <span class="menu-fixed-price">20 €</span>
-        </div>
-        <h5>Primero (a elegir)</h5>
-        <ul>
-          <li>Jamón ibérico</li>
-          <li>Croquetas de jamón caseras<small>contiene gluten · huevos · lácteos</small></li>
-          <li>Rabas<small>contiene gluten · huevos · lácteos</small></li>
-        </ul>
-        <h5>Segundo</h5>
-        <ul><li>Pechuga con patatas<small>contiene gluten · huevos</small></li></ul>
-        <h5>Postre</h5>
-        <ul><li>Postre a elegir</li></ul>
-        <div class="menu-fixed-footer"><b>Incluye:</b> agua y pan. Menú compartido <b>22 €</b>.</div>
       </div>
     </div>
 
@@ -336,76 +203,201 @@ footer a{color:var(--brasa);font-weight:500}
       </div>
 
       <div class="carta-section">
-        <h2>Hamburguesas</h2>
+        <h2>Ensaladas</h2>
         <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Alemana</span><span class="dish-price">5,50 €</span></div><p class="dish-desc">Lechuga, tomate y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Holandesa</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Lechuga, tomate, queso y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Berlinesa</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Lechuga, tomate, pepinillo y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hamburguesa con huevo</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Lechuga, tomate, huevo y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hamburguesa con pimientos rojos</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ibérica</span><span class="dish-price">8,00 €</span></div><p class="dish-desc">Tomate, lechuga, jamón ibérico y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hamburguesa doble</span><span class="dish-price">7,50 €</span></div><p class="dish-desc">Lechuga, tomate, doble carne y patatas.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">16,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada mixta</span><span class="dish-price">12,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ibéricos</span><span class="dish-price">16,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ensaladilla Motabarri</span><span class="dish-price">12,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Espárragos dos salsas</span><span class="dish-price">14,00 €</span></div></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Hamburguesas <small style="font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">(con patatas)</small></h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Alemana</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Lechuga, tomate y carne.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Holandesa</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, queso y carne.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Berlinesa</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, pepinillo y carne.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Con huevo</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, huevo y carne.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Con pimientos rojos</span><span class="dish-price">6,50 €</span></div><p class="dish-desc">Lechuga, tomate, pimientos y carne.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ibérica</span><span class="dish-price">8,50 €</span></div><p class="dish-desc">Lechuga, tomate, jamón ibérico y carne.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Doble</span><span class="dish-price">8,00 €</span></div><p class="dish-desc">Lechuga, tomate y doble carne.</p></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Bocadillos <small style="font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">(con patatas)</small></h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo</span><span class="dish-price">5,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo con queso</span><span class="dish-price">6,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo con pimientos</span><span class="dish-price">6,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Bacon con queso</span><span class="dish-price">5,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Vegetal</span><span class="dish-price">5,50 €</span></div><p class="dish-desc">Lechuga, tomate, cebolla y espárrago.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga</span><span class="dish-price">6,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga con queso</span><span class="dish-price">6,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Tortillas variadas</span><span class="dish-price">6,00 €</span></div><p class="dish-desc">Jamón, chorizo, queso, bonito…</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Patatas fritas</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Queso con nueces</span><span class="dish-price">6,00 €</span></div></div>
         </div>
       </div>
 
       <div class="carta-section">
         <h2>Platos combinados</h2>
         <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo</span><span class="dish-price">11,50 €</span></div><p class="dish-desc">Huevos, lechuga, tomate, croquetas y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga</span><span class="dish-price">11,50 €</span></div><p class="dish-desc">Huevos, tomate, croquetas y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Hamburguesa</span><span class="dish-price">10,00 €</span></div><p class="dish-desc">Huevos, lechuga, tomate y patatas.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo · combinado</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">Lomo, 2 huevos, lechuga, tomate, croquetas y patatas.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga · combinado</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">Pechuga, 2 huevos, lechuga, tomate, croquetas y patatas.</p></div>
           <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con patatas</span><span class="dish-price">6,50 €</span></div></div>
           <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con patatas y chorizo</span><span class="dish-price">9,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con patatas y morcilla</span><span class="dish-price">9,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con patatas y pimientos rojos</span><span class="dish-price">9,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Tortilla al gusto</span><span class="dish-price">9,50 €</span></div><p class="dish-desc">Con ensalada y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot</span><span class="dish-price">15,00 €</span></div><p class="dish-desc">Con pimientos rojos y ensalada.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con morcilla y patatas</span><span class="dish-price">9,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Huevos con pimientos rojos y patatas</span><span class="dish-price">9,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot</span><span class="dish-price">18,00 €</span></div><p class="dish-desc">Con pimientos, ensalada y patatas.</p></div>
         </div>
       </div>
 
       <div class="carta-section">
-        <h2>Ensaladas</h2>
+        <h2>Para picar</h2>
         <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">15,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada mixta</span><span class="dish-price">10,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada templada</span><span class="dish-price">14,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Espárragos dos salsas</span><span class="dish-price">13,00 €</span></div></div>
-        </div>
-      </div>
-
-      <div class="carta-section">
-        <h2>Raciones</h2>
-        <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de setas y gambas</span><span class="dish-price">10,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de hongos</span><span class="dish-price">12,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Croquetas de jamón</span><span class="dish-price">8,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Morcilla y pimientos rojos</span><span class="dish-price">7,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Chorizo</span><span class="dish-price">5,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Anchoas de Santoña</span><span class="dish-price">16,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Jamón ibérico con tumaca</span><span class="dish-price">18,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Foie con mermelada</span><span class="dish-price">14,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pulpo con alioli y vinagreta picante</span><span class="dish-price">22,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Chipirones del Cantábrico</span><span class="dish-price">14,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Zamburiñas</span><span class="dish-price">2,50 €/ud</span></div><p class="dish-desc">Mínimo 4 unidades.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Croquetas de jamón</span><span class="dish-price">12,00 €</span></div><p class="dish-desc">8 unidades.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Gambas</span><span class="dish-price">18,00 €/docena</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de setas y gambas</span><span class="dish-price">12,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Revuelto de hongos</span><span class="dish-price">14,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Chorizo frito</span><span class="dish-price">6,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Morcilla con pimientos rojos</span><span class="dish-price">8,00 €</span></div></div>
           <div class="dish"><div class="dish-head"><span class="dish-name">Alitas de pollo</span><span class="dish-price">5,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Finger de pollo</span><span class="dish-price">5,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Patatas fritas</span><span class="dish-price">4,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Jamón ibérico</span><span class="dish-price">15,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Langostinos a la plancha</span><span class="dish-price">13,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Queso Idiazabal</span><span class="dish-price">5,50 €</span></div></div>
-        </div>
-      </div>
-
-      <div class="carta-section">
-        <h2>Bocadillos</h2>
-        <div class="carta-grid">
-          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo y patatas</span><span class="dish-price">5,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo, queso y patatas</span><span class="dish-price">6,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Bacon, queso y patatas</span><span class="dish-price">5,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Vegetal</span><span class="dish-price">5,00 €</span></div><p class="dish-desc">Lechuga, tomate, cebolla, espárrago y patatas.</p></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga con patatas</span><span class="dish-price">6,00 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Lomo, pimientos y patatas</span><span class="dish-price">6,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Pechuga, queso y patatas</span><span class="dish-price">6,50 €</span></div></div>
-          <div class="dish"><div class="dish-head"><span class="dish-name">Tortilla variada</span><span class="dish-price">5,00 €</span></div><p class="dish-desc">Jamón, chorizo, queso, bonito.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Fingers</span><span class="dish-price">6,00 €</span></div></div>
         </div>
       </div>
     </div>
 
-    <p class="carta-note">Precios con IVA incluido · Carta sujeta a disponibilidad de mercado · Para alérgenos consulta a tu camarero/a</p>
+    <!-- POSTRES -->
+    <div class="carta-panel" data-carta-panel="postres">
+      <div class="noche-banner" style="background:var(--hueso);border:1px solid var(--linea);color:var(--tierra)">
+        <b style="color:var(--brasa-2)">Todos caseros</b>
+        <span style="color:var(--tierra)">Hechos a diario en el obrador, con receta de siempre. El cierre que casi nadie se salta.</span>
+      </div>
+
+      <div class="carta-section">
+        <h2>Postres tradicionales</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Cuajada</span><span class="dish-price">4,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Flan de huevo</span><span class="dish-price">4,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Flan de coco</span><span class="dish-price">4,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Crema catalana</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Natillas</span><span class="dish-price">4,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Goxua</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Torrija</span><span class="dish-price">5,00 €</span></div></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Tartas caseras <small style="font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">(todas 5,00 €)</small></h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Queso al horno</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Queso con lotus</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Queso con pistacho</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Oreo</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Tiramisú</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Mousse de chocolate</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Mousse de limón</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">San Marcos</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Carrot cake</span><span class="dish-price">5,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Manzana</span><span class="dish-price">5,00 €</span></div></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Especiales</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Escocés</span><span class="dish-price">7,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Valenciano</span><span class="dish-price">7,00 €</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODEGA -->
+    <div class="carta-panel" data-carta-panel="bodega">
+      <div class="carta-section">
+        <h2>Txakoli</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Itsasmendi</span><span class="dish-price">19,00 €</span></div><p class="dish-desc">Bizkaiko Txakolina.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Itsasmendi 7</span><span class="dish-price">25,00 €</span></div><p class="dish-desc">Bizkaiko Txakolina.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Uriarte</span><span class="dish-price">15,00 €</span></div><p class="dish-desc">Bizkaiko Txakolina.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Agerre</span><span class="dish-price">17,00 €</span></div><p class="dish-desc">Getariako Txakolina.</p></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Vinos blancos</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Tierra</span><span class="dish-price">18,00 €</span></div><p class="dish-desc">Blanco de Rioja.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Terra Nova</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Verdejo.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Mar de Frades</span><span class="dish-price">25,00 €</span></div><p class="dish-desc">Albariño.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pazo Serantellos</span><span class="dish-price">19,00 €</span></div><p class="dish-desc">Albariño.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Viernes</span><span class="dish-price">17,00 €</span></div><p class="dish-desc">Godello.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Hacienda Casa del Valle</span><span class="dish-price">17,00 €</span></div><p class="dish-desc">Chardonnay.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Crestissimo</span><span class="dish-price">15,00 €</span></div><p class="dish-desc">Moscato.</p></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Vinos rosados</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Castillo de Olite</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Navarra.</p></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ubide</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Rioja.</p></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Vinos tintos · Rioja crianza</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Ramón Bilbao</span><span class="dish-price">22,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Sierra Cantabria</span><span class="dish-price">22,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Luis Cañas</span><span class="dish-price">22,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Piérola</span><span class="dish-price">24,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Campillo</span><span class="dish-price">24,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Alberdi</span><span class="dish-price">24,00 €</span></div></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Vinos tintos · Ribera del Duero</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Mauro</span><span class="dish-price">48,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Berceo</span><span class="dish-price">26,00 €</span></div></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Cavas y champagne</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Uma</span><span class="dish-price">20,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Juvé &amp; Camps</span><span class="dish-price">40,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Juvé &amp; Camps Rosado</span><span class="dish-price">45,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Didier Herbert</span><span class="dish-price">40,00 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Moët &amp; Chandon</span><span class="dish-price">45,00 €</span></div></div>
+        </div>
+      </div>
+
+      <div class="carta-section">
+        <h2>Aguas, pan y extras</h2>
+        <div class="carta-grid">
+          <div class="dish"><div class="dish-head"><span class="dish-name">Agua 1 litro</span><span class="dish-price">2,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Agua 1/2 litro</span><span class="dish-price">1,80 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Pan</span><span class="dish-price">1,60 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Envase para llevar</span><span class="dish-price">0,50 €</span></div></div>
+          <div class="dish"><div class="dish-head"><span class="dish-name">Bolsa</span><span class="dish-price">0,50 €</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="carta-note">Precios con IVA incluido · Carta sujeta a disponibilidad de mercado · Para alérgenos consulta a tu camarero/a · <a href="../menus/" style="color:var(--brasa-2);font-weight:600">Ver menús cerrados →</a></p>
 
   </div>
 </main>
