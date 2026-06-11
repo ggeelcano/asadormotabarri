@@ -374,6 +374,7 @@ function updateLocal(id,changes){var all=readLocal();var i=all.findIndex(functio
 function removeLocal(id){var all=readLocal().filter(function(r){return r.id!==id});writeLocal(all)}
 
 function readAll(){return CACHE}
+function writeAll(arr){CACHE=arr;writeLocal(arr)}
 async function refresh(){
   var remote=await apiList();
   if(remote){
