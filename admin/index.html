@@ -519,12 +519,17 @@ function renderTable(){
     var phone=(r.telefono||'').replace(/\s/g,'');
     var waPhone=phone.replace(/^\+/,'').replace(/^00/,'');
     if(!waPhone.match(/^34/))waPhone='34'+waPhone;
+    var primerNombre=(r.nombre||'').trim().split(' ')[0]||'';
+    var waMsg='Hola '+(primerNombre||'')+', le escribimos del Asador Motabarri.\n\n'+
+      'Le confirmamos su reserva para '+(r.comensales||'?')+' personas el '+fmtDateLong(r.fecha)+' a las '+(r.hora||'')+'.\n\n'+
+      '¿Nos confirma que sigue en pie? Muchas gracias y un saludo.';
+    var waUrl='https://wa.me/'+waPhone+'?text='+encodeURIComponent(waMsg);
     return '<tr class="'+cls+'" data-id="'+r.id+'">'+
       '<td data-label="ID"><span class="tbl-id">'+(r.id||'').slice(0,18)+'</span></td>'+
       '<td data-label="Cliente"><div class="tbl-name">'+(r.nombre||'—')+'</div><div class="tbl-meta">'+(r.email||'')+'</div></td>'+
       '<td data-label="Fecha"><div class="tbl-date">'+(r.hora||'')+'<small>'+fmtDateLong(r.fecha)+'</small></div></td>'+
       '<td data-label="Pax"><div class="tbl-pax">'+(r.comensales||'?')+'<small>pax</small></div></td>'+
-      '<td data-label="Contacto"><a class="phone" href="tel:'+phone+'">'+(r.telefono||'')+'</a><div class="tbl-meta"><a href="https://wa.me/'+waPhone+'" target="_blank" rel="noopener" style="color:var(--ok);font-weight:600">WhatsApp →</a></div></td>'+
+      '<td data-label="Contacto"><a class="phone" href="tel:'+phone+'">'+(r.telefono||'')+'</a><div class="tbl-meta"><a href="'+waUrl+'" target="_blank" rel="noopener" style="color:var(--ok);font-weight:600">WhatsApp →</a></div></td>'+
       '<td data-label="Notas"><div class="tbl-meta" style="max-width:200px">'+(r.notas?escapeHtml(r.notas):'<em style="color:var(--linea)">—</em>')+'</div></td>'+
       '<td data-label="Estado"><span class="status-pill '+(r.estado||'pendiente')+'">'+(r.estado||'pendiente')+'</span></td>'+
       '<td data-label="Acciones"><div class="row-actions">'+
