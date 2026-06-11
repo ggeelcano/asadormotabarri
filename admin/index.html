@@ -132,6 +132,24 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
 .empty p{font-size:14px;max-width:380px;margin:0 auto;line-height:1.6}
 .empty button{margin-top:20px;display:inline-block}
 
+/* Modal nueva reserva */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(27,19,16,.55);z-index:150;padding:20px;overflow-y:auto}
+.modal-overlay.show{display:grid;place-items:start center;padding-top:6vh}
+.modal{background:var(--hueso);width:100%;max-width:560px;border-top:3px solid var(--brasa);box-shadow:0 30px 80px rgba(0,0,0,.45);animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 26px 16px;border-bottom:1px solid var(--linea)}
+.modal-head h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:24px;color:var(--tierra);line-height:1.1}
+.modal-head p{font-size:12.5px;color:var(--gris);margin-top:4px}
+.modal-x{background:none;border:none;font-size:30px;line-height:1;color:var(--gris);cursor:pointer;padding:0 4px;font-family:inherit}
+.modal-x:hover{color:var(--brasa-2)}
+.modal form{padding:20px 26px 24px}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modal-grid .fld{margin:0}
+.modal-grid .modal-full{grid-column:1/-1}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.modal-actions button{flex:0 0 auto;min-width:140px}
+#modalErr{margin:16px 0 0}
+@media(max-width:520px){.modal-grid{grid-template-columns:1fr}.modal-actions{flex-direction:column-reverse}.modal-actions button{width:100%}}
 .toast{position:fixed;bottom:24px;right:24px;background:var(--tierra);color:var(--crema);padding:14px 20px;font-size:13px;font-weight:600;box-shadow:0 12px 36px rgba(0,0,0,.3);transform:translateY(60px);opacity:0;transition:.3s;z-index:200;border-left:3px solid var(--brasa)}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.ok{border-left-color:var(--ok)}
@@ -280,8 +298,9 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
         <input type="date" id="fFecha">
       </div>
       <div class="controls-actions">
+        <button type="button" class="btn-sm brasa" id="btnNueva">+ Nueva reserva</button>
         <button type="button" class="btn-sm out" id="btnExport">Exportar CSV</button>
-        <button type="button" class="btn-sm brasa" id="btnReload">Actualizar</button>
+        <button type="button" class="btn-sm out" id="btnReload">Actualizar</button>
       </div>
     </div>
 
@@ -307,6 +326,33 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
         <button type="button" class="btn-sm brasa" id="seedBtnEmpty">Cargar reservas de ejemplo</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- MODAL NUEVA RESERVA -->
+<div class="modal-overlay" id="modalNueva">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h3>Nueva reserva</h3><p>Añade a mano una reserva (teléfono, en persona…)</p></div>
+      <button type="button" class="modal-x" id="modalClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <form id="formNueva" novalidate>
+      <div class="modal-grid">
+        <div class="fld"><label>Nombre *</label><input name="nombre" required placeholder="Nombre del cliente"></div>
+        <div class="fld"><label>Teléfono *</label><input name="telefono" required placeholder="+34 6XX XXX XXX"></div>
+        <div class="fld"><label>Comensales *</label><input name="comensales" type="number" min="1" max="60" value="2" required></div>
+        <div class="fld"><label>Email</label><input name="email" type="email" placeholder="(opcional)"></div>
+        <div class="fld"><label>Fecha *</label><input name="fecha" type="date" required></div>
+        <div class="fld"><label>Hora *</label><input name="hora" type="time" required value="21:00"></div>
+        <div class="fld"><label>Estado</label><select name="estado"><option value="confirmada">Confirmada</option><option value="pendiente">Pendiente</option></select></div>
+        <div class="fld modal-full"><label>Notas</label><textarea name="notas" rows="2" placeholder="Alergias, trona, mesa concreta…"></textarea></div>
+      </div>
+      <div class="alert error" id="modalErr">Faltan campos obligatorios (*).</div>
+      <div class="modal-actions">
+        <button type="button" class="btn-sm out" id="modalCancel">Cancelar</button>
+        <button type="submit" class="btn-sm brasa" id="modalSave">Guardar reserva</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -514,6 +560,52 @@ document.getElementById('statHoyCard').addEventListener('click',function(){
 /* Filtros */
 ['fSearch','fEstado','fFecha'].forEach(function(id){document.getElementById(id).addEventListener('input',renderTable)});
 document.getElementById('btnReload').addEventListener('click',async function(){await refresh();renderTable();toast('Lista actualizada')});
+
+/* ─── Nueva reserva manual ─── */
+var modal=document.getElementById('modalNueva');
+function openModal(){
+  document.getElementById('formNueva').reset();
+  document.getElementById('modalErr').classList.remove('show');
+  var f=document.querySelector('#formNueva [name=fecha]');if(f)f.value=todayISO();
+  modal.classList.add('show');
+  setTimeout(function(){var n=document.querySelector('#formNueva [name=nombre]');if(n)n.focus()},50);
+}
+function closeModal(){modal.classList.remove('show')}
+document.getElementById('btnNueva').addEventListener('click',openModal);
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalCancel').addEventListener('click',closeModal);
+modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))closeModal()});
+
+document.getElementById('formNueva').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var f=e.target;
+  var data=Object.fromEntries(new FormData(f).entries());
+  data.nombre=(data.nombre||'').trim();data.telefono=(data.telefono||'').trim();
+  if(!data.nombre||!data.telefono||!data.fecha||!data.hora||!data.comensales){
+    document.getElementById('modalErr').classList.add('show');return;
+  }
+  document.getElementById('modalErr').classList.remove('show');
+  data.restaurante=RESTAURANT;
+  data.restaurante_nombre='Asador Motabarri';
+  data.origen='manual';
+  if(!data.estado)data.estado='confirmada';
+  var btn=document.getElementById('modalSave');btn.disabled=true;var orig=btn.textContent;btn.textContent='Guardando…';
+  var saved=false,id=null;
+  try{
+    var r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),mode:'cors'});
+    if(r.ok){var j=await r.json();id=j.id||(j.reserva&&j.reserva.id);saved=true}
+  }catch(err){}
+  if(!saved){
+    id='RES-'+todayISO().replace(/-/g,'')+'-'+String(CACHE.length+1).padStart(3,'0');
+    var rec=Object.assign({},data,{id:id,created_at:new Date().toISOString(),_offline:true});
+    var loc=readLocal();loc.unshift(rec);writeLocal(loc);
+  }
+  await refresh();renderTable();
+  btn.disabled=false;btn.textContent=orig;
+  closeModal();
+  toast(saved?'Reserva creada correctamente':'Reserva guardada (sin conexión al servidor)',saved?'ok':'bad');
+});
 
 /* Export CSV */
 document.getElementById('btnExport').addEventListener('click',function(){
