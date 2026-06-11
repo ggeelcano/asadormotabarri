@@ -47,8 +47,8 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
 .alert.show{display:block}
 .alert.error{background:var(--bad-bg);color:var(--bad);border-left:3px solid var(--bad)}
 .alert.info{background:var(--info-bg);color:var(--info);border-left:3px solid var(--info)}
-.login-hint{margin-top:18px;padding:12px;background:rgba(200,99,42,.08);border-left:3px solid var(--brasa);font-size:12px;color:var(--gris);line-height:1.6}
-.login-hint b{color:var(--tierra)}
+.remember{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--gris);margin:2px 0 18px;cursor:pointer;user-select:none}
+.remember input{width:17px;height:17px;accent-color:var(--brasa);cursor:pointer}
 
 /* Panel */
 .panel{display:none}
@@ -226,10 +226,8 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
       <label for="pwd">Contraseña</label>
       <input type="password" id="pwd" autocomplete="current-password" required>
     </div>
+    <label class="remember"><input type="checkbox" id="remember"> Recordar mi sesión en este dispositivo</label>
     <button type="submit" class="btn btn-brasa">Entrar</button>
-    <div class="login-hint">
-      <b>Acceso demo:</b> usuario <b>motabarri</b> · contraseña <b>brasa2026</b>
-    </div>
   </form>
 </div>
 
@@ -320,7 +318,7 @@ var RESTAURANT='motabarri-erandio';
 var CRM_KEY='gg_reservas';
 var AUTH_KEY='motabarri_admin_auth';
 var TOKEN_KEY='motabarri_admin_token';
-var USER='motabarri',PASS='brasa2026';
+var CRED_HASH='c678ea09c38121bb36d3c97d2c0829fb01b009a3c2345d00c47f891ba54d3dc1'; /* SHA-256 de usuario:contraseña — credenciales NO visibles en el codigo */
 var ADMIN_TOKEN='motabarri-admin-2026-changeme';
 var CACHE=[];
 var ONLY_TODAY=false;
@@ -328,16 +326,34 @@ var ONLY_TODAY=false;
 /* Login */
 function showLogin(){document.getElementById('loginWrap').style.display='grid';document.getElementById('panel').classList.remove('active')}
 function showPanel(){document.getElementById('loginWrap').style.display='none';document.getElementById('panel').classList.add('active');loadReservas()}
-if(sessionStorage.getItem(AUTH_KEY)==='1')showPanel();else showLogin();
 
-document.getElementById('loginForm').addEventListener('submit',function(e){
+async function sha256(str){
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+}
+
+/* Sesión recordada (localStorage = persiste) o de pestaña (sessionStorage) */
+if(localStorage.getItem(AUTH_KEY)==='1'||sessionStorage.getItem(AUTH_KEY)==='1')showPanel();else showLogin();
+
+document.getElementById('loginForm').addEventListener('submit',async function(e){
   e.preventDefault();
   var u=document.getElementById('usr').value.trim();
   var p=document.getElementById('pwd').value;
-  if(u===USER&&p===PASS){sessionStorage.setItem(AUTH_KEY,'1');sessionStorage.setItem(TOKEN_KEY,ADMIN_TOKEN);document.getElementById('loginErr').classList.remove('show');showPanel()}
-  else{document.getElementById('loginErr').classList.add('show')}
+  var remember=document.getElementById('remember').checked;
+  var hash=await sha256(u+':'+p);
+  if(hash===CRED_HASH){
+    var store=remember?localStorage:sessionStorage;
+    store.setItem(AUTH_KEY,'1');store.setItem(TOKEN_KEY,ADMIN_TOKEN);
+    document.getElementById('loginErr').classList.remove('show');
+    document.getElementById('pwd').value='';
+    showPanel();
+  }else{document.getElementById('loginErr').classList.add('show')}
 });
-document.getElementById('btnLogout').addEventListener('click',function(){sessionStorage.removeItem(AUTH_KEY);sessionStorage.removeItem(TOKEN_KEY);showLogin()});
+document.getElementById('btnLogout').addEventListener('click',function(){
+  localStorage.removeItem(AUTH_KEY);localStorage.removeItem(TOKEN_KEY);
+  sessionStorage.removeItem(AUTH_KEY);sessionStorage.removeItem(TOKEN_KEY);
+  showLogin();
+});
 
 /* Toast */
 function toast(msg,type){
