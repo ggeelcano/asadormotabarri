@@ -73,6 +73,14 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
 .stat-label{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brasa-2);margin-bottom:8px}
 .stat-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:42px;color:var(--tierra);line-height:1}
 .stat-extra{font-size:12px;color:var(--gris);margin-top:4px}
+.stat.clickable{cursor:pointer;text-align:left;font-family:inherit;width:100%;transition:.2s;position:relative}
+.stat.clickable:hover{border-left-color:var(--brasa-2);background:var(--crema)}
+.stat-tap{display:inline-block;font-size:8.5px;letter-spacing:.1em;color:var(--gris);font-weight:600;margin-left:6px;text-transform:none}
+.stat.clickable.active{background:var(--tierra);border-color:var(--tierra);border-left-color:var(--brasa)}
+.stat.clickable.active .stat-label{color:var(--brasa)}
+.stat.clickable.active .stat-num{color:var(--crema)}
+.stat.clickable.active .stat-extra{color:rgba(244,237,224,.7)}
+.stat.clickable.active .stat-tap{color:rgba(244,237,224,.55)}
 
 .controls{display:flex;gap:12px;align-items:flex-end;margin-bottom:18px;flex-wrap:wrap;background:#fff;padding:18px;border:1px solid var(--linea)}
 .controls .fld{margin:0;flex:1;min-width:140px}
@@ -132,15 +140,57 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
 .notes{background:var(--crema);border-left:3px solid var(--brasa);padding:14px 18px;font-size:13px;color:var(--tierra);margin-bottom:24px;line-height:1.6}
 .notes b{font-weight:700}
 
-@media(max-width:900px){
-  .stats{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1000px){
   .dash h1{font-size:30px}
   .controls{flex-direction:column;align-items:stretch}
-  .controls .fld{min-width:0;width:100%}
+  .controls .fld{min-width:0;width:100%;flex:1 1 auto !important}
+  .controls .fld[style]{flex:1 1 auto !important}
   .controls-actions{width:100%}
   .controls-actions button{flex:1}
-  .tbl{font-size:12.5px}
-  .tbl th,.tbl td{padding:10px 12px}
+}
+@media(max-width:900px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ─── Móvil: la tabla se convierte en tarjetas ─── */
+@media(max-width:760px){
+  .tbl-wrap{border:none;background:transparent;overflow:visible}
+  .tbl{font-size:14px}
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)} /* ocultar cabecera */
+  .tbl,.tbl tbody{display:block;width:100%}
+  .tbl tr{display:block;background:#fff;border:1px solid var(--linea);border-left:3px solid var(--brasa);margin-bottom:14px;padding:4px 2px;box-shadow:0 2px 10px rgba(42,31,24,.05)}
+  .tbl tbody tr:hover{background:#fff}
+  .tbl tr.cancelled{border-left-color:var(--bad)}
+  .tbl td{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:11px 16px;border-bottom:1px solid var(--crema);text-align:right;vertical-align:middle}
+  .tbl td:last-child{border-bottom:none}
+  .tbl td::before{content:attr(data-label);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brasa-2);text-align:left;flex:0 0 auto}
+
+  /* Cliente = cabecera de la tarjeta, a todo el ancho */
+  .tbl td[data-label="Cliente"]{display:block;text-align:left;background:var(--hueso);padding:14px 16px}
+  .tbl td[data-label="Cliente"]::before{display:none}
+  .tbl-name{font-size:20px}
+
+  /* ID discreto arriba */
+  .tbl td[data-label="ID"]{padding:8px 16px;border-bottom:none}
+  .tbl-id{font-size:11px}
+
+  /* Pax compacto (la etiqueta ya dice "Pax") */
+  .tbl-pax{font-size:20px;text-align:right}
+  .tbl-pax small{display:none}
+
+  /* Fecha: hora + día en una línea legible */
+  .tbl-date{text-align:right}
+  .tbl-date small{display:inline;margin:0 0 0 8px}
+
+  /* Contacto y Notas alineados a la derecha */
+  .tbl td[data-label="Contacto"]{flex-wrap:wrap;justify-content:flex-end}
+  .tbl td[data-label="Notas"] .tbl-meta{max-width:none !important;text-align:right}
+
+  /* Acciones: botones a todo el ancho, repartidos */
+  .tbl td[data-label="Acciones"]{flex-direction:column;align-items:stretch;gap:8px}
+  .tbl td[data-label="Acciones"]::before{text-align:left;margin-bottom:2px}
+  .row-actions{justify-content:stretch;gap:8px}
+  .row-actions .row-btn{flex:1;padding:11px 6px;text-align:center;font-size:12px}
 }
 @media(max-width:560px){
   .topbar{padding:12px 16px}
@@ -149,6 +199,9 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
   .stats{grid-template-columns:1fr 1fr;gap:10px}
   .stat{padding:16px}
   .stat-num{font-size:34px}
+}
+@media(max-width:380px){
+  .stats{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -203,7 +256,7 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="stat-label">Hoy</div><div class="stat-num" id="statHoy">0</div><div class="stat-extra" id="statHoyPax">0 comensales</div></div>
+      <button type="button" class="stat clickable" id="statHoyCard"><div class="stat-label">Hoy <span class="stat-tap">toca para filtrar</span></div><div class="stat-num" id="statHoy">0</div><div class="stat-extra" id="statHoyPax">0 comensales</div></button>
       <div class="stat"><div class="stat-label">Pendientes</div><div class="stat-num" id="statPend">0</div><div class="stat-extra">Por confirmar</div></div>
       <div class="stat"><div class="stat-label">Confirmadas</div><div class="stat-num" id="statConf">0</div><div class="stat-extra">Próximas reservas</div></div>
       <div class="stat"><div class="stat-label">Esta semana</div><div class="stat-num" id="statWeek">0</div><div class="stat-extra" id="statWeekPax">0 comensales</div></div>
@@ -270,6 +323,7 @@ var TOKEN_KEY='motabarri_admin_token';
 var USER='motabarri',PASS='brasa2026';
 var ADMIN_TOKEN='motabarri-admin-2026-changeme';
 var CACHE=[];
+var ONLY_TODAY=false;
 
 /* Login */
 function showLogin(){document.getElementById('loginWrap').style.display='grid';document.getElementById('panel').classList.remove('active')}
@@ -376,7 +430,9 @@ function renderTable(){
   var q=document.getElementById('fSearch').value.trim().toLowerCase();
   var fEst=document.getElementById('fEstado').value;
   var fFch=document.getElementById('fFecha').value;
+  var hoy=todayISO();
   var filt=all.filter(function(r){
+    if(ONLY_TODAY&&r.fecha!==hoy)return false;
     if(fEst&&r.estado!==fEst)return false;
     if(fFch&&r.fecha<fFch)return false;
     if(q){
@@ -388,7 +444,12 @@ function renderTable(){
   filt.sort(function(a,b){return (a.fecha+a.hora).localeCompare(b.fecha+b.hora)});
   var tbody=document.getElementById('tbody');
   var empty=document.getElementById('empty');
-  if(!filt.length){tbody.innerHTML='';empty.style.display='block';return}
+  if(!filt.length){
+    tbody.innerHTML='';
+    if(ONLY_TODAY){empty.querySelector('h3').textContent='No hay reservas para hoy';empty.querySelector('p').textContent='No hay ninguna reserva con fecha de hoy. Pulsa de nuevo en la tarjeta "Hoy" para ver todas las reservas.'}
+    else{empty.querySelector('h3').textContent='Sin reservas todavía';empty.querySelector('p').textContent='Cuando alguien rellene el formulario de reserva en la web aparecerán aquí. Mientras, puedes cargar reservas de ejemplo para ver cómo funciona.'}
+    empty.style.display='block';return;
+  }
   empty.style.display='none';
   tbody.innerHTML=filt.map(function(r){
     var cls=r.estado==='cancelada'?'cancelled':'';
@@ -396,14 +457,14 @@ function renderTable(){
     var waPhone=phone.replace(/^\+/,'').replace(/^00/,'');
     if(!waPhone.match(/^34/))waPhone='34'+waPhone;
     return '<tr class="'+cls+'" data-id="'+r.id+'">'+
-      '<td><span class="tbl-id">'+(r.id||'').slice(0,18)+'</span></td>'+
-      '<td><div class="tbl-name">'+(r.nombre||'—')+'</div><div class="tbl-meta">'+(r.email||'')+'</div></td>'+
-      '<td><div class="tbl-date">'+(r.hora||'')+'<small>'+fmtDateLong(r.fecha)+'</small></div></td>'+
-      '<td><div class="tbl-pax">'+(r.comensales||'?')+'<small>pax</small></div></td>'+
-      '<td><a class="phone" href="tel:'+phone+'">'+(r.telefono||'')+'</a><div class="tbl-meta"><a href="https://wa.me/'+waPhone+'" target="_blank" rel="noopener" style="color:var(--ok);font-weight:600">WhatsApp →</a></div></td>'+
-      '<td><div class="tbl-meta" style="max-width:200px">'+(r.notas?escapeHtml(r.notas):'<em style="color:var(--linea)">—</em>')+'</div></td>'+
-      '<td><span class="status-pill '+(r.estado||'pendiente')+'">'+(r.estado||'pendiente')+'</span></td>'+
-      '<td><div class="row-actions">'+
+      '<td data-label="ID"><span class="tbl-id">'+(r.id||'').slice(0,18)+'</span></td>'+
+      '<td data-label="Cliente"><div class="tbl-name">'+(r.nombre||'—')+'</div><div class="tbl-meta">'+(r.email||'')+'</div></td>'+
+      '<td data-label="Fecha"><div class="tbl-date">'+(r.hora||'')+'<small>'+fmtDateLong(r.fecha)+'</small></div></td>'+
+      '<td data-label="Pax"><div class="tbl-pax">'+(r.comensales||'?')+'<small>pax</small></div></td>'+
+      '<td data-label="Contacto"><a class="phone" href="tel:'+phone+'">'+(r.telefono||'')+'</a><div class="tbl-meta"><a href="https://wa.me/'+waPhone+'" target="_blank" rel="noopener" style="color:var(--ok);font-weight:600">WhatsApp →</a></div></td>'+
+      '<td data-label="Notas"><div class="tbl-meta" style="max-width:200px">'+(r.notas?escapeHtml(r.notas):'<em style="color:var(--linea)">—</em>')+'</div></td>'+
+      '<td data-label="Estado"><span class="status-pill '+(r.estado||'pendiente')+'">'+(r.estado||'pendiente')+'</span></td>'+
+      '<td data-label="Acciones"><div class="row-actions">'+
         (r.estado!=='confirmada'?'<button type="button" class="row-btn ok" data-act="confirmar">Confirmar</button>':'')+
         (r.estado!=='completada'&&r.estado!=='cancelada'?'<button type="button" class="row-btn" data-act="completar">Completar</button>':'')+
         (r.estado!=='cancelada'?'<button type="button" class="row-btn bad" data-act="cancelar">Cancelar</button>':'')+
@@ -423,6 +484,14 @@ document.getElementById('tbody').addEventListener('click',async function(e){
   else if(act==='cancelar'){if(!confirm('¿Cancelar reserva?')){btn.disabled=false;return}await updateOne(id,{estado:'cancelada'});toast('Reserva cancelada','bad')}
   else if(act==='borrar'){if(!confirm('¿Borrar definitivamente?')){btn.disabled=false;return}await removeOne(id);toast('Reserva borrada','bad')}
   renderTable();
+});
+
+/* Filtro rápido: solo reservas de hoy */
+document.getElementById('statHoyCard').addEventListener('click',function(){
+  ONLY_TODAY=!ONLY_TODAY;
+  this.classList.toggle('active',ONLY_TODAY);
+  renderTable();
+  toast(ONLY_TODAY?'Mostrando solo las reservas de hoy':'Mostrando todas las reservas');
 });
 
 /* Filtros */
