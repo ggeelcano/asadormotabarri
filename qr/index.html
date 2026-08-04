@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Carta y menú · Asador Motabarri · Erandio</title>
+<meta name="description" content="Carta y menú del día del Asador Motabarri en Erandio.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#2A1F18">
+
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='28' fill='%232A1F18'/%3E%3Ctext x='90' y='118' font-family='Georgia,serif' font-style='italic' font-size='100' font-weight='700' fill='%23C8632A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232A1F18'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='38' font-weight='700' fill='%23C8632A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --crema:#F4EDE0;--hueso:#FBF7EF;--tierra:#2A1F18;--tierra-2:#1B1310;
+  --tinta:#1A140F;--gris:#6B5F50;--linea:#D8CDB6;--brasa:#C8632A;--brasa-2:#A0481B;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);line-height:1.6;-webkit-font-smoothing:antialiased;font-weight:400}
+a{color:inherit;text-decoration:none}
+
+.head{background:var(--tierra);color:var(--crema);padding:34px 20px 26px;text-align:center;position:relative;overflow:hidden}
+.head::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(200,99,42,.2) 0%,transparent 60%);pointer-events:none}
+.head .brand-mark{width:52px;height:52px;border:1.5px solid var(--brasa);color:var(--brasa);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:30px;margin:0 auto 10px;position:relative}
+.head b{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;display:block;line-height:1.1;position:relative}
+.head small{font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;color:rgba(244,237,224,.65);font-weight:500;display:block;margin-top:6px;position:relative}
+.head .fecha{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--brasa);margin-top:10px;position:relative}
+
+.pills{position:sticky;top:0;z-index:100;background:rgba(251,247,239,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea);display:flex;gap:6px;overflow-x:auto;padding:12px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;background:transparent;border:1.5px solid var(--linea);color:var(--tierra);padding:9px 15px;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.2s;white-space:nowrap}
+.pill.active{background:var(--tierra);border-color:var(--tierra);color:var(--brasa)}
+
+main{padding:26px 16px 50px;max-width:680px;margin:0 auto}
+.panel{display:none}
+.panel.active{display:block}
+
+/* Menú del día */
+.mdd-price{display:flex;justify-content:center;margin-bottom:20px}
+.mdd-price span{display:inline-flex;align-items:baseline;gap:10px;padding:9px 24px;border:1.5px solid var(--brasa)}
+.mdd-price b{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:40px;color:var(--brasa-2);line-height:1}
+.mdd-price small{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);font-weight:600}
+.menu-card{background:#fff;border:1px solid var(--linea);border-top:3px solid var(--brasa);box-shadow:0 14px 40px rgba(42,31,24,.08);padding:30px 24px}
+.menu-card h5{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brasa-2);margin:24px 0 10px;display:flex;align-items:center;gap:14px}
+.menu-card h5::after{content:"";flex:1;border-top:1px dashed var(--linea)}
+.menu-card h5:first-of-type{margin-top:0}
+.menu-card ul{list-style:none}
+.menu-card li{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--tierra);font-weight:500;padding:6px 0;line-height:1.35}
+.menu-card li small{display:block;font-size:11.5px;color:var(--gris);font-style:italic;letter-spacing:.04em;font-family:'Inter',sans-serif;font-weight:400;margin-top:2px}
+.menu-footer{margin-top:24px;padding-top:14px;border-top:1px dashed var(--linea);font-size:13.5px;color:var(--gris);line-height:1.7;font-style:italic;font-family:'Cormorant Garamond',serif}
+.menu-footer b{color:var(--tierra);font-weight:600;font-style:normal;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.04em}
+
+/* Carta */
+.grupo-nota{background:var(--tierra);color:var(--crema);padding:14px 18px;font-size:13px;line-height:1.6;margin-bottom:20px;border-left:3px solid var(--brasa)}
+.cat{margin-bottom:26px}
+.cat h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:24px;color:var(--tierra);margin-bottom:2px}
+.cat h2 small{font-family:'Inter',sans-serif;font-style:normal;font-size:12px;font-weight:400;color:var(--gris);letter-spacing:.04em}
+.cat-line{border-top:1px solid var(--linea);margin:8px 0 4px}
+.dish{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8px 0;border-bottom:1px dashed var(--linea)}
+.dish:last-child{border-bottom:none}
+.dish-body{min-width:0}
+.dish-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--tierra);line-height:1.3}
+.dish-desc{font-size:11.5px;color:var(--gris);font-style:italic;font-family:'Inter',sans-serif;margin-top:1px}
+.dish-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:18px;color:var(--brasa-2);white-space:nowrap}
+
+.alerg{text-align:center;max-width:480px;margin:34px auto 0;font-size:12.5px;color:var(--gris);font-style:italic;line-height:1.6}
+.foot-cta{margin-top:26px;text-align:center}
+.foot-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1.5px solid var(--brasa);color:var(--brasa-2);transition:.25s}
+.foot-cta a:hover{background:var(--brasa);color:var(--tierra-2)}
+
+footer{background:#15100C;color:var(--crema);padding:28px 20px;text-align:center}
+footer p{font-size:12.5px;opacity:.65;line-height:1.7}
+footer a{color:var(--brasa);font-weight:500}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="brand-mark">M</div>
+  <b>Motabarri</b>
+  <small>Asador · Erandio</small>
+  <div class="fecha" id="fechaHoy"></div>
+</header>
+
+<div class="pills" id="pills"></div>
+
+<main id="main"></main>
+
+<footer>
+  <p>Asador Motabarri · Carretera Leioa-Unbe Km 32 · 48950 Erandio<br>
+  <a href="tel:+34944670768">944 67 07 68</a> · WhatsApp <a href="https://wa.me/34619622974">619 622 974</a></p>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   Página del QR de mesa. Los datos vienen del panel de gestión
+   (asadormotabarri.com/admin → pestaña "Carta y menú (QR)").
+   Si el servidor no responde se usan los datos de respaldo de abajo.
+   Esta página NO afecta a /carta/ ni /menus/ de la web.
+   ══════════════════════════════════════════════════════════════ */
+var API='https://motabarri-menus.josugarciandia.workers.dev/api/doc/';
+
+/* Respaldo por si no hay conexión con el servidor (copia de 2026-08-04) */
+var FALLBACK_MDD={"precio":"20 €","secciones":[{"titulo":"Para compartir","items":[{"n":"Jamón"},{"n":"Croquetas de jamón"},{"n":"Rabas"}]},{"titulo":"Segundo","items":[{"n":"Pechuga con patatas"}]},{"titulo":"Postre","items":[{"n":"Postre casero"}]}],"footer":"Incluye: agua y pan. Cervezas y refrescos no incluidos. IVA incluido."};
+var FALLBACK_CARTA=null; /* si no llega, la pestaña de carta enseña un aviso con enlace a /carta/ */
+
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function footerHtml(t){return esc(t).replace(/^([^:]{1,30}:)/,'<b>$1</b>')}
+
+function render(mdd,carta){
+  var pills='<button class="pill active" data-p="0">Menú del día</button>';
+  var panels='';
+
+  /* Panel 0: menú del día */
+  var h='';
+  if(mdd&&mdd.secciones&&mdd.secciones.length){
+    if(mdd.precio)h+='<div class="mdd-price"><span><b>'+esc(mdd.precio)+'</b><small>IVA incluido</small></span></div>';
+    h+='<div class="menu-card">';
+    mdd.secciones.forEach(function(s){
+      if(!s.titulo&&(!s.items||!s.items.length))return;
+      h+='<h5>'+esc(s.titulo||'')+'</h5><ul>';
+      (s.items||[]).forEach(function(it){h+='<li>'+esc(it.n||'')+(it.nota?'<small>'+esc(it.nota)+'</small>':'')+'</li>'});
+      h+='</ul>';
+    });
+    if(mdd.footer)h+='<div class="menu-footer">'+footerHtml(mdd.footer)+'</div>';
+    h+='</div>';
+  }else{
+    h+='<p style="text-align:center;color:var(--gris);padding:30px 10px">Hoy no hay menú del día publicado. Pregunta a tu camarero/a.</p>';
+  }
+  h+='<p class="alerg">¿Alergias o intolerancias? Consulta a tu camarero/a: te decimos los alérgenos de cada plato sin problema.</p>';
+  panels+='<div class="panel active" data-panel="0">'+h+'</div>';
+
+  /* Paneles de la carta: un grupo = una pestaña */
+  if(carta&&carta.grupos&&carta.grupos.length){
+    carta.grupos.forEach(function(g,gi){
+      var id=gi+1;
+      pills+='<button class="pill" data-p="'+id+'">'+esc(g.titulo||('Carta '+id))+'</button>';
+      var p='';
+      if(g.nota)p+='<div class="grupo-nota">'+esc(g.nota)+'</div>';
+      (g.categorias||[]).forEach(function(c){
+        if(!c.titulo&&(!c.items||!c.items.length))return;
+        p+='<div class="cat"><h2>'+esc(c.titulo||'')+(c.nota?' <small>('+esc(c.nota)+')</small>':'')+'</h2><div class="cat-line"></div>';
+        (c.items||[]).forEach(function(it){
+          p+='<div class="dish"><div class="dish-body"><div class="dish-name">'+esc(it.n||'')+'</div>'+(it.nota?'<div class="dish-desc">'+esc(it.nota)+'</div>':'')+'</div><div class="dish-price">'+esc(it.p||'')+'</div></div>';
+        });
+        p+='</div>';
+      });
+      p+='<p class="alerg">Precios con IVA incluido · Carta sujeta a disponibilidad de mercado · Para alérgenos consulta a tu camarero/a</p>';
+      panels+='<div class="panel" data-panel="'+id+'">'+p+'</div>';
+    });
+  }else{
+    pills+='<button class="pill" data-p="1">La carta</button>';
+    panels+='<div class="panel" data-panel="1"><p style="text-align:center;color:var(--gris);padding:30px 10px">No se pudo cargar la carta.<br><br><a href="../carta/" style="color:var(--brasa-2);font-weight:600;text-decoration:underline">Ver la carta de la web →</a></p></div>';
+  }
+
+  document.getElementById('pills').innerHTML=pills;
+  document.getElementById('main').innerHTML=panels;
+
+  document.querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.pill').forEach(function(x){x.classList.remove('active')});
+      document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active')});
+      b.classList.add('active');
+      document.querySelector('.panel[data-panel="'+b.dataset.p+'"]').classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+}
+
+(function(){
+  var dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  var meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var d=new Date();
+  document.getElementById('fechaHoy').textContent=dias[d.getDay()]+' '+d.getDate()+' de '+meses[d.getMonth()];
+
+  render(FALLBACK_MDD,FALLBACK_CARTA);
+  Promise.all([
+    fetch(API+'menu-del-dia').then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch(API+'carta').then(function(r){return r.ok?r.json():null}).catch(function(){return null})
+  ]).then(function(res){
+    if(res[0]||res[1])render(res[0]||FALLBACK_MDD,res[1]||FALLBACK_CARTA);
+  });
+})();
+</script>
+
+</body>
+</html>
