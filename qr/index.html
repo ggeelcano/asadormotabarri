@@ -31,6 +31,8 @@ a{color:inherit;text-decoration:none}
 .head b{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;display:block;line-height:1.1;position:relative}
 .head small{font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;color:rgba(244,237,224,.65);font-weight:500;display:block;margin-top:6px;position:relative}
 .head .fecha{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--brasa);margin-top:10px;position:relative}
+.head .go-web{position:absolute;top:14px;right:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1.5px solid rgba(244,237,224,.35);color:var(--crema);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
+.head .go-web:hover{border-color:var(--brasa);color:var(--brasa)}
 
 .pills{position:sticky;top:0;z-index:100;background:rgba(251,247,239,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea);display:flex;gap:6px;overflow-x:auto;padding:12px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .pills::-webkit-scrollbar{display:none}
@@ -82,6 +84,7 @@ footer a{color:var(--brasa);font-weight:500}
 <body>
 
 <header class="head">
+  <a href="../" class="go-web">← Inicio</a>
   <div class="brand-mark">M</div>
   <b>Motabarri</b>
   <small>Asador · Erandio</small>
@@ -93,7 +96,8 @@ footer a{color:var(--brasa);font-weight:500}
 <main id="main"></main>
 
 <footer>
-  <p>Asador Motabarri · Carretera Leioa-Unbe Km 32 · 48950 Erandio<br>
+  <p><a href="../">← Ir a la web del Motabarri</a><br><br>
+  Asador Motabarri · Carretera Leioa-Unbe Km 32 · 48950 Erandio<br>
   <a href="tel:+34944670768">944 67 07 68</a> · WhatsApp <a href="https://wa.me/34619622974">619 622 974</a></p>
 </footer>
 
