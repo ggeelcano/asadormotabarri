@@ -174,6 +174,15 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
 .sec-row input{flex:1;padding:10px 12px;border:1px solid var(--linea);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;min-width:0}
 .sec-block textarea{width:100%;padding:10px 12px;border:1px solid var(--linea);font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;resize:vertical}
 .sec-block input:focus,.sec-block textarea:focus{outline:none;border-color:var(--brasa)}
+.fix-menu{border:1px solid var(--linea);border-left:3px solid var(--brasa);padding:18px;margin-bottom:18px;background:#fff}
+.fix-menu-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.fix-menu-grid{display:grid;grid-template-columns:2fr 2fr 1fr;gap:10px;margin-bottom:12px}
+.fix-menu-grid input{padding:10px 12px;border:1px solid var(--linea);font-size:13px;font-family:'Inter',sans-serif;min-width:0}
+.fix-menu-grid input:focus{outline:none;border-color:var(--brasa)}
+.fm-dest{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--gris);cursor:pointer;user-select:none}
+.fm-dest input{width:16px;height:16px;accent-color:var(--brasa)}
+.fm-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:20px;color:var(--brasa-2)}
+@media(max-width:700px){.fix-menu-grid{grid-template-columns:1fr}}
 .grp{border:1px solid var(--linea);border-left:3px solid var(--brasa);padding:18px;margin-bottom:18px;background:#fff}
 .grp-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .grp-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:20px;color:var(--brasa-2)}
@@ -296,7 +305,7 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
   <div class="dash">
     <div class="tabs">
       <button type="button" class="tab active" data-view="viewReservas">Reservas</button>
-      <button type="button" class="tab" data-view="viewMenus">Carta y menú (QR)</button>
+      <button type="button" class="tab" data-view="viewMenus">Carta y menús</button>
     </div>
 
     <div id="viewReservas">
@@ -366,12 +375,12 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
     </div><!-- /viewReservas -->
 
     <div id="viewMenus" style="display:none">
-      <h1>Carta y menú <em>del QR</em>.</h1>
-      <p class="dash-sub">Es lo que ven los clientes al escanear el QR de las mesas. Al guardar, el cambio se publica al instante. La web (asadormotabarri.com) no cambia.</p>
+      <h1>Carta y <em>menús</em>.</h1>
+      <p class="dash-sub">Al guardar, los cambios se publican al instante en el QR de las mesas y en la web (asadormotabarri.com).</p>
 
       <div class="med-box">
         <div class="med-head"><h2>Menú del día</h2><span class="med-upd" id="mddUpd"></span></div>
-        <p class="med-hint">Un plato por línea; si quieres una nota pequeña debajo del plato, ponla tras una barra: <em>Croquetas de jamón | 3 por persona</em>.</p>
+        <p class="med-hint">Sale en el QR de las mesas. Un plato por línea; si quieres una nota pequeña debajo del plato, ponla tras una barra: <em>Croquetas de jamón | 3 por persona</em>.</p>
         <div class="fld" style="max-width:200px"><label>Precio</label><input id="mddPrecio" placeholder="20 €"></div>
         <div id="mddSecs"></div>
         <button type="button" class="btn-sm out" id="mddAddSec">+ Añadir apartado</button>
@@ -381,10 +390,18 @@ body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);l
 
       <div class="med-box">
         <div class="med-head"><h2>La carta</h2><span class="med-upd" id="ctaUpd"></span></div>
-        <p class="med-hint">La carta del QR está en bloques (A la carta, Viernes y sábado noche, Postres, Bodega): cada bloque es una pestaña para el cliente. Dentro, cada categoría lleva sus platos, <b>uno por línea</b> con el precio tras una barra: <em>Croquetas de jamón | 12,00 €</em>. Si quieres una descripción pequeña, añádela con otra barra: <em>Chuletón | 38,00 €/kg | Vacuno mayor a la brasa de encina.</em></p>
+        <p class="med-hint">La misma carta sale en el QR de las mesas y en la página "Carta" de la web. Está en bloques (A la carta, Viernes y sábado noche, Postres, Bodega): cada bloque es una pestaña para el cliente. Dentro, cada categoría lleva sus platos, <b>uno por línea</b> con el precio tras una barra: <em>Croquetas de jamón | 12,00 €</em>. Si quieres una descripción pequeña, añádela con otra barra: <em>Chuletón | 38,00 €/kg | Vacuno mayor a la brasa de encina.</em></p>
         <div id="ctaGrupos"></div>
         <button type="button" class="btn-sm out" id="ctaAddGrupo">+ Añadir bloque</button>
         <div class="med-actions"><button type="button" class="btn-sm brasa" id="ctaSave">Guardar y publicar la carta</button></div>
+      </div>
+
+      <div class="med-box">
+        <div class="med-head"><h2>Menús cerrados</h2><span class="med-upd" id="fixUpd"></span></div>
+        <p class="med-hint">Los menús de la página "Menús" de la web (niños, alubiada, parejas, eventos…). Puedes cambiar platos y precios, reordenar, quitar menús o añadir nuevos.</p>
+        <div id="fixList"></div>
+        <button type="button" class="btn-sm out" id="fixAdd">+ Añadir menú</button>
+        <div class="med-actions"><button type="button" class="btn-sm brasa" id="fixSave">Guardar y publicar menús cerrados</button></div>
       </div>
     </div><!-- /viewMenus -->
 
@@ -755,6 +772,7 @@ async function loadMenusDocs(){
   try{
     var r1=await fetch(MENUS_API+'menu-del-dia');if(r1.ok)renderMdd(await r1.json());
     var r2=await fetch(MENUS_API+'carta');if(r2.ok)renderCarta(await r2.json());
+    var r3=await fetch(MENUS_API+'menus');if(r3.ok)renderFix(await r3.json());
   }catch(e){toast('No se pudo cargar. Revisa la conexión.','bad')}
 }
 
@@ -830,6 +848,50 @@ document.getElementById('ctaSave').addEventListener('click',async function(){
   var ok=await saveDoc('carta',{grupos:grupos});
   btn.disabled=false;
   if(ok){toast('Carta publicada ✔');document.getElementById('ctaUpd').textContent=fmtUpd(new Date().toISOString())}
+  else toast('No se pudo guardar. Revisa la conexión.','bad');
+});
+
+/* Menús cerrados (página "Menús" de la web) */
+function fixMenuBlock(m){
+  m=m||{};
+  var div=document.createElement('div');div.className='fix-menu';
+  div.innerHTML='<div class="fix-menu-bar"><span class="fm-num"></span>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap"><button type="button" class="row-btn fm-up">↑ Subir</button><button type="button" class="row-btn fm-down">↓ Bajar</button><button type="button" class="row-btn bad fm-del">Eliminar menú</button></div></div>'+
+    '<div class="fix-menu-grid"><input class="fm-titulo" placeholder="Título (ej. Alubiada)"><input class="fm-sub" placeholder="Subtítulo (ej. la pareja)"><input class="fm-precio" placeholder="Precio (ej. 22 €)"></div>'+
+    '<label class="fm-dest" style="margin-bottom:12px"><input type="checkbox" class="fm-destchk"> Destacado (tarjeta resaltada en la web)</label>'+
+    '<div class="fm-secs" style="margin-top:12px"></div>'+
+    '<button type="button" class="btn-sm out fm-addsec" style="margin-bottom:12px">+ Añadir apartado</button>'+
+    '<div class="fld" style="margin:0"><label>Texto final (letra pequeña)</label><input class="fm-footer" placeholder="Incluye: agua, pan y vino crianza. IVA incluido."></div>';
+  div.querySelector('.fm-titulo').value=m.titulo||'';
+  div.querySelector('.fm-sub').value=m.subtitulo||'';
+  div.querySelector('.fm-precio').value=m.precio||'';
+  div.querySelector('.fm-destchk').checked=!!m.destacado;
+  div.querySelector('.fm-footer').value=m.footer||'';
+  var secs=div.querySelector('.fm-secs');
+  (m.secciones||[]).forEach(function(s){secs.appendChild(secBlock(s.titulo,s.items))});
+  div.querySelector('.fm-addsec').addEventListener('click',function(){secs.appendChild(secBlock('',[]))});
+  div.querySelector('.fm-del').addEventListener('click',function(){if(confirm('¿Eliminar este menú entero?')){div.remove();renum()}});
+  div.querySelector('.fm-up').addEventListener('click',function(){var prev=div.previousElementSibling;if(prev)div.parentNode.insertBefore(div,prev);renum()});
+  div.querySelector('.fm-down').addEventListener('click',function(){var next=div.nextElementSibling;if(next)div.parentNode.insertBefore(next,div);renum()});
+  return div;
+}
+function renum(){Array.from(document.querySelectorAll('#fixList .fm-num')).forEach(function(n,i){n.textContent='Menú '+(i+1)})}
+function renderFix(doc){
+  var c=document.getElementById('fixList');c.innerHTML='';
+  (doc.menus||[]).forEach(function(m){c.appendChild(fixMenuBlock(m))});
+  document.getElementById('fixUpd').textContent=fmtUpd(doc.updated_at);
+  renum();
+}
+document.getElementById('fixAdd').addEventListener('click',function(){document.getElementById('fixList').appendChild(fixMenuBlock({}));renum()});
+document.getElementById('fixSave').addEventListener('click',async function(){
+  var menus=Array.from(document.querySelectorAll('#fixList .fix-menu')).map(function(d){
+    return {titulo:d.querySelector('.fm-titulo').value.trim(),subtitulo:d.querySelector('.fm-sub').value.trim(),precio:d.querySelector('.fm-precio').value.trim(),destacado:d.querySelector('.fm-destchk').checked,secciones:readSecs(d.querySelector('.fm-secs')),footer:d.querySelector('.fm-footer').value.trim()};
+  }).filter(function(m){return m.titulo});
+  if(!menus.length){toast('Tiene que quedar al menos un menú con título','bad');return}
+  var btn=this;btn.disabled=true;
+  var ok=await saveDoc('menus',{menus:menus});
+  btn.disabled=false;
+  if(ok){toast('Menús cerrados publicados ✔');document.getElementById('fixUpd').textContent=fmtUpd(new Date().toISOString())}
   else toast('No se pudo guardar. Revisa la conexión.','bad');
 });
 </script>

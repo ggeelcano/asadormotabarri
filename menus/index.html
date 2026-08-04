@@ -302,6 +302,40 @@ footer a{color:var(--brasa);font-weight:500}
 </footer>
 
 <script>
+/* Menús editables desde el panel (asadormotabarri.com/admin).
+   Si el servidor no responde, se queda el contenido fijo de arriba (fallback). */
+(function(){
+  var API='https://motabarri-menus.josugarciandia.workers.dev/api/doc/menus';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function footerHtml(t){
+    var h=esc(t).replace(/^([^:]{1,30}:)/,'<b>$1</b>');
+    h=h.replace(/\b(9\d{2}\s\d{2}\s\d{2}\s\d{2})\b/g,function(m){return '<a href="tel:+34'+m.replace(/\s/g,'')+'">'+m+'</a>'});
+    h=h.replace(/\b(6\d{2}\s\d{3}\s\d{3})\b/g,function(m){return '<a href="https://wa.me/34'+m.replace(/\s/g,'')+'">'+m+'</a>'});
+    return h;
+  }
+  fetch(API).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(doc){
+    if(!doc||!doc.menus||!doc.menus.length)return;
+    var html='';
+    doc.menus.forEach(function(m){
+      html+='<div class="menu-fixed'+(m.destacado?' featured':'')+'">';
+      html+='<div class="menu-fixed-head"><h4>'+esc(m.titulo||'')+(m.subtitulo?'<em>'+esc(m.subtitulo)+'</em>':'')+'</h4>';
+      html+='<span class="menu-fixed-price">'+esc(m.precio||'')+'</span></div>';
+      (m.secciones||[]).forEach(function(s){
+        if(!s.titulo&&(!s.items||!s.items.length))return;
+        html+='<h5>'+esc(s.titulo||'')+'</h5><ul>';
+        (s.items||[]).forEach(function(it){
+          html+='<li>'+esc(it.n||'')+(it.nota?'<small>'+esc(it.nota)+'</small>':'')+'</li>';
+        });
+        html+='</ul>';
+      });
+      if(m.footer)html+='<div class="menu-fixed-footer">'+footerHtml(m.footer)+'</div>';
+      html+='</div>';
+    });
+    document.querySelector('.menus-grid').innerHTML=html;
+    window.dispatchEvent(new Event('resize')); /* re-igualar alturas de tarjetas */
+  }).catch(function(){});
+})();
+
 (function(){
   function eq(){
     var cards=document.querySelectorAll('.menu-fixed');

@@ -453,13 +453,54 @@ footer a{color:var(--brasa);font-weight:500}
 </footer>
 
 <script>
-document.querySelectorAll('.carta-tab').forEach(t=>t.addEventListener('click',()=>{
-  document.querySelectorAll('.carta-tab').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.carta-panel').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');
-  document.querySelector(`.carta-panel[data-carta-panel="${t.dataset.carta}"]`).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
+function bindCartaTabs(){
+  document.querySelectorAll('.carta-tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.carta-tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.carta-panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelector(`.carta-panel[data-carta-panel="${t.dataset.carta}"]`).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+}
+bindCartaTabs();
+
+/* Carta editable desde el panel (asadormotabarri.com/admin) — mismo contenido que el QR de mesa.
+   Si el servidor no responde, se queda el contenido fijo de arriba (fallback).
+   La pestaña de alérgenos es fija (normativa) y no se toca desde el panel. */
+(function(){
+  var API='https://motabarri-menus.josugarciandia.workers.dev/api/doc/carta';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  fetch(API).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(doc){
+    if(!doc||!doc.grupos||!doc.grupos.length)return;
+
+    var algPanel=document.querySelector('.carta-panel[data-carta-panel="alergenos"]');
+    document.querySelectorAll('.carta-panel').forEach(function(p){if(p!==algPanel)p.remove()});
+
+    var tabs='';
+    doc.grupos.forEach(function(g,gi){
+      tabs+='<button class="carta-tab'+(gi===0?' active':'')+'" data-carta="g'+gi+'">'+esc(g.titulo||('Carta '+(gi+1)))+'</button>';
+      var p=document.createElement('div');
+      p.className='carta-panel'+(gi===0?' active':'');
+      p.setAttribute('data-carta-panel','g'+gi);
+      var h='';
+      if(g.nota)h+='<div class="noche-banner"><b>'+esc(g.titulo||'')+'</b><span>'+esc(g.nota)+'</span></div>';
+      (g.categorias||[]).forEach(function(c){
+        if(!c.titulo&&(!c.items||!c.items.length))return;
+        h+='<div class="carta-section"><h2>'+esc(c.titulo||'')+(c.nota?' <small style="font-family:\'Inter\',sans-serif;font-style:normal;font-size:13px;font-weight:400;color:var(--gris);letter-spacing:.04em">('+esc(c.nota)+')</small>':'')+'</h2><div class="carta-grid">';
+        (c.items||[]).forEach(function(it){
+          h+='<div class="dish"><div class="dish-head"><span class="dish-name">'+esc(it.n||'')+'</span><span class="dish-price">'+esc(it.p||'')+'</span></div>'+(it.nota?'<p class="dish-desc">'+esc(it.nota)+'</p>':'')+'</div>';
+        });
+        h+='</div></div>';
+      });
+      p.innerHTML=h;
+      algPanel.parentNode.insertBefore(p,algPanel);
+    });
+    tabs+='<button class="carta-tab" data-carta="alergenos">Alérgenos</button>';
+    algPanel.classList.remove('active');
+    document.querySelector('.carta-tabs').innerHTML=tabs;
+    bindCartaTabs();
+  }).catch(function(){});
+})();
 </script>
 
 </body>
