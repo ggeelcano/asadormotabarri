@@ -50,6 +50,8 @@ a{color:inherit;text-decoration:none}
 .topbar{background:var(--tierra-2);color:var(--crema);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 0;text-align:center;font-weight:500}
 .topbar b{color:var(--brasa);font-weight:700}
 .topbar span{margin:0 14px}
+.aviso-cierre{background:linear-gradient(90deg,var(--brasa-2),var(--brasa));color:#fff;text-align:center;padding:12px 16px;font-size:14px;font-weight:600;letter-spacing:.05em}
+.aviso-cierre b{text-transform:uppercase;letter-spacing:.12em}
 
 nav{position:sticky;top:0;background:rgba(251,247,239,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea);z-index:100}
 .nav-inner{max-width:1280px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -411,6 +413,7 @@ footer{background:#15100C;color:var(--crema);padding:70px 28px 30px}
 @media(max-width:480px){
   .topbar{font-size:10px;padding:8px 0}
   .topbar span{margin:0 7px}
+  .aviso-cierre{font-size:12.5px;padding:10px 12px}
   .nav-inner{padding:14px 18px}
   .brand-mark{width:42px;height:42px;font-size:23px}
   .brand-logo{height:44px}
@@ -557,6 +560,7 @@ setTimeout(hideLoader,4000);
 </script>
 
 <div class="topbar"><span>CASERÍO DEL <b>SIGLO XIX</b></span><span>·</span><span>BRASA &amp; TXULETÓN</span><span>·</span><span>ALUBIADA <b>22€</b> · MENÚ MOTABARRI <b>38€</b></span></div>
+<div class="aviso-cierre" id="aviso-cierre">🌴 <b>Cerrado por vacaciones</b> del 15 al 23 de agosto · Volvemos el lunes 24 con las brasas encendidas</div>
 
 <nav>
   <div class="nav-inner">
@@ -1419,10 +1423,17 @@ document.querySelectorAll('.carta-tab').forEach(t=>t.addEventListener('click',()
   document.getElementById('carta').scrollIntoView({behavior:'smooth',block:'start'});
 }));
 
+const CIERRE_INICIO='2026-08-15',CIERRE_FIN='2026-08-23';
+function fechaLocal(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+const hoy=fechaLocal(new Date());
+if(hoy>CIERRE_FIN){const av=document.getElementById('aviso-cierre');if(av)av.remove();}
+
 const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);
+let fechaDefecto=fechaLocal(tomorrow);
+if(fechaDefecto>=CIERRE_INICIO&&fechaDefecto<=CIERRE_FIN)fechaDefecto='2026-08-24';
 document.querySelectorAll('input[type="date"]').forEach(i=>{
-  i.min=new Date().toISOString().slice(0,10);
-  i.value=tomorrow.toISOString().slice(0,10);
+  i.min=hoy;
+  i.value=fechaDefecto;
 });
 
 const ERP_ENDPOINT='https://gg-reservas-erp.josugarciandia.workers.dev/api/reservas';
@@ -1446,6 +1457,12 @@ async function submitBooking(form,statusEl,btn,closeAfter){
   if(!data.fecha||!data.hora||!data.nombre||!data.telefono||!data.email){
     statusEl.className='bf-status show error';
     statusEl.textContent='Faltan campos por rellenar.';
+    return;
+  }
+
+  if(data.fecha>=CIERRE_INICIO&&data.fecha<=CIERRE_FIN){
+    statusEl.className='bf-status show error';
+    statusEl.innerHTML='Estamos <b>cerrados por vacaciones del 15 al 23 de agosto</b>. Volvemos el lunes 24 — elige otra fecha.';
     return;
   }
 
