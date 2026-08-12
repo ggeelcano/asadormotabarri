@@ -1203,7 +1203,7 @@ setTimeout(hideLoader,4000);
       </div>
       <div class="bf-status" id="booking-status"></div>
       <div class="bf-row cols-2">
-        <div class="bf-field"><label for="bf-date">Fecha</label><input id="bf-date" name="fecha" type="date" required></div>
+        <div class="bf-field"><label for="bf-date">Fecha</label><select id="bf-date" name="fecha" required></select></div>
         <div class="bf-field"><label for="bf-time">Hora</label><select id="bf-time" name="hora" required>
           <option value="">Elige hora</option>
           <option>13:00</option><option>13:30</option><option>14:00</option>
@@ -1332,7 +1332,7 @@ setTimeout(hideLoader,4000);
     <form id="booking-form-modal" novalidate>
       <div class="bf-status" id="booking-status-modal"></div>
       <div class="bf-row cols-2">
-        <div class="bf-field"><label>Fecha</label><input name="fecha" type="date" required></div>
+        <div class="bf-field"><label>Fecha</label><select name="fecha" required></select></div>
         <div class="bf-field"><label>Hora</label><select name="hora" required>
           <option value="">Elige hora</option>
           <option>13:00</option><option>13:30</option><option>14:00</option>
@@ -1431,9 +1431,25 @@ if(hoy>CIERRE_FIN){const av=document.getElementById('aviso-cierre');if(av)av.rem
 const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);
 let fechaDefecto=fechaLocal(tomorrow);
 if(fechaDefecto>=CIERRE_INICIO&&fechaDefecto<=CIERRE_FIN)fechaDefecto='2026-08-24';
-document.querySelectorAll('input[type="date"]').forEach(i=>{
-  i.min=hoy;
-  i.value=fechaDefecto;
+
+/* Desplegable de fechas: los días de cierre no se ofrecen */
+function generarFechas(){
+  const out=[];
+  const d=new Date();
+  for(let i=0;i<60;i++){
+    const v=fechaLocal(d);
+    if(!(v>=CIERRE_INICIO&&v<=CIERRE_FIN)){
+      let txt=d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+      txt=txt.charAt(0).toUpperCase()+txt.slice(1);
+      out.push({v,txt});
+    }
+    d.setDate(d.getDate()+1);
+  }
+  return out;
+}
+document.querySelectorAll('select[name="fecha"]').forEach(sel=>{
+  sel.innerHTML=generarFechas().map(f=>'<option value="'+f.v+'">'+f.txt+'</option>').join('');
+  sel.value=fechaDefecto;
 });
 
 /* Horario real: cenas solo viernes y sábado; sábado y domingo la comida empieza a las 13:30 */
@@ -1449,14 +1465,14 @@ function horasPara(fecha){
   return horas;
 }
 function actualizarHoras(form){
-  const fecha=form.querySelector('input[name="fecha"]').value;
+  const fecha=form.querySelector('[name="fecha"]').value;
   const sel=form.querySelector('select[name="hora"]');
   const previa=sel.value;
   sel.innerHTML='<option value="">Elige hora</option>'+horasPara(fecha).map(h=>'<option>'+h+'</option>').join('');
   if(horasPara(fecha).includes(previa))sel.value=previa;
 }
 document.querySelectorAll('#booking-form,#booking-form-modal').forEach(f=>{
-  f.querySelector('input[name="fecha"]').addEventListener('change',()=>actualizarHoras(f));
+  f.querySelector('[name="fecha"]').addEventListener('change',()=>actualizarHoras(f));
   actualizarHoras(f);
 });
 
@@ -1523,6 +1539,8 @@ async function submitBooking(form,statusEl,btn,closeAfter){
   statusEl.className='bf-status show success';
   statusEl.innerHTML=`<b>¡Reserva recibida!</b> Te llegará la confirmación a <b>${data.email}</b> en breve.<br><br>📌 Reserva <b>${id||'—'}</b> · Mesa para <b>${data.comensales}</b> el <b>${fechaTxt} a las ${data.hora}</b>.<br>Si necesitas cambiar algo, llámanos al <a href="tel:+34944670768" style="color:inherit;text-decoration:underline;font-weight:600">944 67 07 68</a>.`;
   form.reset();
+  const fsel=form.querySelector('[name="fecha"]');
+  if(fsel){fsel.value=fechaDefecto;actualizarHoras(form);}
   if(closeAfter)setTimeout(closeModal,5500);
   btn.disabled=false;
   btn.textContent=original;
