@@ -1436,6 +1436,30 @@ document.querySelectorAll('input[type="date"]').forEach(i=>{
   i.value=fechaDefecto;
 });
 
+/* Horario real: cenas solo viernes y sábado; sábado y domingo la comida empieza a las 13:30 */
+const HORAS_COMIDA=['13:00','13:30','14:00','14:30','15:00','15:30'];
+const HORAS_CENA=['20:00','20:30','21:00','21:30','22:00'];
+function esDiaConCena(fecha){const d=new Date(fecha+'T00:00:00').getDay();return d===5||d===6;}
+function horasPara(fecha){
+  if(!fecha)return HORAS_COMIDA.concat(HORAS_CENA);
+  const d=new Date(fecha+'T00:00:00').getDay();
+  let horas=HORAS_COMIDA.slice();
+  if(d===0||d===6)horas=horas.filter(h=>h>='13:30');
+  if(esDiaConCena(fecha))horas=horas.concat(HORAS_CENA);
+  return horas;
+}
+function actualizarHoras(form){
+  const fecha=form.querySelector('input[name="fecha"]').value;
+  const sel=form.querySelector('select[name="hora"]');
+  const previa=sel.value;
+  sel.innerHTML='<option value="">Elige hora</option>'+horasPara(fecha).map(h=>'<option>'+h+'</option>').join('');
+  if(horasPara(fecha).includes(previa))sel.value=previa;
+}
+document.querySelectorAll('#booking-form,#booking-form-modal').forEach(f=>{
+  f.querySelector('input[name="fecha"]').addEventListener('change',()=>actualizarHoras(f));
+  actualizarHoras(f);
+});
+
 const ERP_ENDPOINT='https://gg-reservas-erp.josugarciandia.workers.dev/api/reservas';
 const RESTAURANT_ID='motabarri-erandio';
 const CRM_KEY='gg_reservas';
@@ -1463,6 +1487,12 @@ async function submitBooking(form,statusEl,btn,closeAfter){
   if(data.fecha>=CIERRE_INICIO&&data.fecha<=CIERRE_FIN){
     statusEl.className='bf-status show error';
     statusEl.innerHTML='Estamos <b>cerrados por vacaciones del 15 al 23 de agosto</b>. Volvemos el lunes 24 — elige otra fecha.';
+    return;
+  }
+
+  if(data.hora>='20:00'&&!esDiaConCena(data.fecha)){
+    statusEl.className='bf-status show error';
+    statusEl.innerHTML='Solo servimos <b>cenas los viernes y sábados</b>. El resto de días abrimos a mediodía, de 13:00 a 16:00.';
     return;
   }
 
