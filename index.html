@@ -314,6 +314,8 @@ section{padding:130px 28px;position:relative}
 .bf-submit{width:100%;background:var(--brasa);color:var(--tierra-2);padding:16px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--brasa);cursor:pointer;transition:.25s;margin-top:14px}
 .bf-submit:hover:not(:disabled){background:transparent;color:var(--brasa)}
 .bf-submit:disabled{opacity:.65;cursor:wait}
+.bf-aviso{margin-top:16px;padding:12px 14px;background:rgba(200,99,42,.08);border-left:3px solid var(--brasa);font-size:13.5px;line-height:1.5;color:var(--tierra);font-weight:500}
+.bf-aviso b{font-weight:700}
 .bf-legal{font-size:11.5px;color:var(--gris);margin-top:14px;line-height:1.5;text-align:center;font-weight:400}
 .bf-legal a{color:var(--brasa-2);text-decoration:underline}
 .bf-status{padding:14px 18px;font-size:14px;border:1px solid;margin-bottom:18px;display:none;font-weight:500;line-height:1.5}
@@ -1240,7 +1242,8 @@ setTimeout(hideLoader,4000);
         <div class="bf-field"><label for="bf-email">Email</label><input id="bf-email" name="email" type="email" placeholder="tu@email.com" required></div>
       </div>
       <div class="bf-field"><label for="bf-notes">Notas (alergias, sillita, etc.)</label><textarea id="bf-notes" name="notas"></textarea></div>
-      <button type="submit" class="bf-submit" id="bf-submit-btn">Confirmar reserva</button>
+      <p class="bf-aviso"><b>Importante:</b> enviar este formulario no confirma la reserva. No podrás venir al restaurante hasta que te la confirmemos por WhatsApp o por teléfono.</p>
+      <button type="submit" class="bf-submit" id="bf-submit-btn">Solicitar reserva</button>
       <p class="bf-legal">Al enviar aceptas la <a href="#">política de privacidad</a>.</p>
     </form>
   </div>
@@ -1324,7 +1327,7 @@ setTimeout(hideLoader,4000);
   <div class="modal-head">
     <div>
       <h3>Reservar <em>en Motabarri</em></h3>
-      <p>Confirmación inmediata por email y SMS</p>
+      <p>Te confirmamos la reserva por WhatsApp o por teléfono</p>
     </div>
     <button type="button" class="modal-close" id="modal-close">×</button>
   </div>
@@ -1366,7 +1369,8 @@ setTimeout(hideLoader,4000);
         <div class="bf-field"><label>Email</label><input name="email" type="email" required></div>
       </div>
       <div class="bf-field"><label>Notas</label><textarea name="notas"></textarea></div>
-      <button type="submit" class="bf-submit">Confirmar reserva</button>
+      <p class="bf-aviso"><b>Importante:</b> enviar este formulario no confirma la reserva. No podrás venir al restaurante hasta que te la confirmemos por WhatsApp o por teléfono.</p>
+      <button type="submit" class="bf-submit">Solicitar reserva</button>
     </form>
   </div>
 </div>
@@ -1537,7 +1541,7 @@ async function submitBooking(form,statusEl,btn,closeAfter){
 
   const fechaTxt=new Date(data.fecha+'T00:00:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
   statusEl.className='bf-status show success';
-  statusEl.innerHTML=`<b>¡Reserva recibida!</b> Te llegará la confirmación a <b>${data.email}</b> en breve.<br><br>📌 Reserva <b>${id||'—'}</b> · Mesa para <b>${data.comensales}</b> el <b>${fechaTxt} a las ${data.hora}</b>.<br>Si necesitas cambiar algo, llámanos al <a href="tel:+34944670768" style="color:inherit;text-decoration:underline;font-weight:600">944 67 07 68</a>.`;
+  statusEl.innerHTML=`<b>Solicitud recibida.</b> Tu reserva todavía no está confirmada: te escribiremos por WhatsApp o te llamaremos al <b>${data.telefono}</b> para confirmarla. Sin esa confirmación no podremos atenderte.<br><br>📌 Solicitud <b>${id||'—'}</b> · Mesa para <b>${data.comensales}</b> el <b>${fechaTxt} a las ${data.hora}</b>.<br>Si necesitas cambiar algo, llámanos al <a href="tel:+34944670768" style="color:inherit;text-decoration:underline;font-weight:600">944 67 07 68</a>.`;
   form.reset();
   const fsel=form.querySelector('[name="fecha"]');
   if(fsel){fsel.value=fechaDefecto;actualizarHoras(form);}
